@@ -52,7 +52,7 @@ const ReservedSlots = ({ title, result }) => {
                     onChange={(e) => {
                       setRef1(e.target.value);
                     }}
-                    autoWidth={"true"}
+                    autoWidth={true}
                     sx={{ minWidth: minWidth }}
                   >
                     {numbers.map((name) => (
@@ -74,7 +74,7 @@ const ReservedSlots = ({ title, result }) => {
                     onChange={(e) => {
                       setRef2(e.target.value);
                     }}
-                    autoWidth={"true"}
+                    autoWidth={true}
                     sx={{ minWidth: minWidth }}
                   >
                     {numbers.map((name) => (
@@ -96,7 +96,7 @@ const ReservedSlots = ({ title, result }) => {
                     onChange={(e) => {
                       setRef3(e.target.value);
                     }}
-                    autoWidth={"true"}
+                    autoWidth={true}
                     sx={{ minWidth: minWidth }}
                   >
                     {numbers.map((name) => (
@@ -118,7 +118,7 @@ const ReservedSlots = ({ title, result }) => {
                     onChange={(e) => {
                       setRef4(e.target.value);
                     }}
-                    autoWidth={"true"}
+                    autoWidth={true}
                     sx={{ minWidth: minWidth }}
                   >
                     {numbers.map((name) => (

@@ -7,13 +7,13 @@ import Title from "../components/Title";
 import ToggleSwitch from "../components/ToggleSwitch";
 import ElementPanel from "../components/ElementPanel";
 import Array from "../components/Array";
-//
-import publicDatas from "../data/public.json";
-import { build } from "../library/mainConstructor";
 import Number from "../components/Number";
-
-// Datas importation
+//
+import publicDatas from "../data/front/public.json";
+import { build } from "../library/mainConstructor";
+//
 const pub = JSON.parse(JSON.stringify(publicDatas));
+// Datas importation
 const ihmProface = pub.ihmProface;
 const Instrumentations = pub.Instrumentations;
 const ComposantsProcess = pub.ComposantsProcess;
@@ -29,13 +29,10 @@ function fetchDatas() {
   for (var i = 0; i < rows.length; i++) {
     const results = {};
     results["categorie"] = rows[i].getElementsByTagName("td")[0].innerText;
-    results["name"] = rows[i].getElementsByTagName("td")[1].innerText;
-    results["id"] = rows[i].getElementsByTagName("td")[2].innerText;
-    results["tag"] = rows[i].getElementsByTagName("td")[3].innerText;
-    results["group"] = rows[i].getElementsByTagName("td")[4].innerText;
+    results["id"] = rows[i].getElementsByTagName("td")[1].innerText;
+    results["tag"] = rows[i].getElementsByTagName("td")[2].innerText;
     finalResults.push(results);
   }
-  console.log("finalResults", finalResults);
   return finalResults;
 }
 //

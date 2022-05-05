@@ -1,3 +1,7 @@
 export function build(obj = {}, arr = [], bool = Boolean) {
-  console.log("!!!!", obj, arr, bool);
+  if (arr.length !== 0) {
+    return console.log("do", arr);
+  } else {
+    return alert("Choose elements please !");
+  }
 }

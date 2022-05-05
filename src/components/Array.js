@@ -10,10 +10,9 @@ import {
   Card,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { lime, teal, orange, amber } from "@mui/material/colors";
+import { green } from "@mui/material/colors";
 
 const masterList = [];
-const colorize = ["black", amber[100], teal[100], orange[100], lime[100]];
 
 const Array = ({ item }) => {
   const [listToDisplay, setListToDisplay] = useState([]);
@@ -27,11 +26,7 @@ const Array = ({ item }) => {
       for (const items of masterList) {
         const uniqueId = `IDN-${i}`;
         displayedTable.push(
-          <TableRow
-            sx={{ bgcolor: colorize[items.group] }}
-            key={uniqueId}
-            id={uniqueId}
-          >
+          <TableRow sx={{ bgcolor: green[400] }} key={uniqueId} id={uniqueId}>
             <TableCell
               align="left"
               size="small"
@@ -41,19 +36,13 @@ const Array = ({ item }) => {
                 pl: 8,
               }}
             >
-              {items.categorie}
-            </TableCell>
-            <TableCell align="center" size="small" padding="normal">
-              {items.name}
+              {items.title}
             </TableCell>
             <TableCell align="center" size="small" padding="normal">
               {items.id}
             </TableCell>
             <TableCell align="center" size="small" padding="normal">
               {items.tag}
-            </TableCell>
-            <TableCell align="center" size="small" padding="normal">
-              {items.group}
             </TableCell>
             <TableCell align="center" size="small" padding="normal">
               <Button
@@ -83,7 +72,7 @@ const Array = ({ item }) => {
         alignItems="center"
         spacing={1}
       >
-        <TableContainer /* component={Paper} */>
+        <TableContainer>
           <Table aria-label="simple table">
             <TableBody id="table-body-test">{listToDisplay}</TableBody>
           </Table>

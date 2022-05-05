@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 const Selector = ({ title, data, result }) => {
+  const displayedData = [...Object.keys(data)];
   return (
     <Card sx={{ py: 1.5, width: "100%" }} elevation={5}>
       <Stack
@@ -29,14 +30,14 @@ const Selector = ({ title, data, result }) => {
             <InputLabel id="demo-simple-select-label">Device</InputLabel>
             <Select
               defaultValue=""
+              autoWidth={true}
               label="ScreenSelector"
               onChange={(e) => {
                 result(e.target.value);
               }}
-              autoWidth={"true"}
               sx={{ minWidth: 160 }}
             >
-              {data.map((name) => (
+              {displayedData.map((name) => (
                 <MenuItem key={name} value={name}>
                   {name}
                 </MenuItem>

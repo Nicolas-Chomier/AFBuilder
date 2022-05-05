@@ -1,0 +1,179 @@
+{
+    "ihmProface": {
+        "LT4000": "PRF000REF001",
+        "Extrem Display 12": "PRF000REF002",
+        "Extrem Display 15": "PRF000REF003",
+        "Advanced Display 12": "PRF000REF004",
+        "Premium Display 15": "PRF000REF005",
+        "Premium Display 19": "PRF000REF006"
+    },
+    "Instrumentations": {
+        "title": "Instrumentation",
+        "data": {
+            "Capteur de pression": {
+                "standard": "IST000REF001",
+                "avec 1 contact sec": "IST000REF002",
+                "avec 2 contact sec": "IST000REF003"
+            },
+            "Pressostat": {
+                "standard": "IST001REF001"
+            },
+            "Capteur de débit": {
+                "standard": "IST002REF001",
+                "avec compteur à impulsion": "IST002REF002"
+            },
+            "Détecteur de Débit": {
+                "standard": "IST003REF001"
+            },
+            "Capteur de Température": {
+                "standard": "IST004REF001",
+                "PT100 ou PT1000 ou Thermocouple": "IST004REF002",
+                "avec signal de commutation": "IST004REF003"
+            },
+            "Thermostat": {
+                "standard": "IST005REF001"
+            },
+            "Hygrometre": {
+                "standard": "IST006REF001"
+            },
+            "Capteur de niveau d'eau": {
+                "standard": "IST007REF001"
+            },
+            "Compteurs": {
+                "Compteur d'eau": "IST008REF001",
+                "Compteur d'energie thermique": "IST008REF002",
+                "Compteur electrique": "IST008REF003"
+            },
+            "Capteur hybride": {
+                "Débit & T°": "IST009REF001"
+            }
+        }
+    },
+    "ComposantsProcess": {
+        "title": "Composants process",
+        "data": {
+            "Chilleur": {
+                "standard": "CPR000REF001"
+            },
+            "Secheur frigorifique": {
+                "retour défaut": "CPR001REF001",
+                "ordre marche, retour défaut": "CPR001REF002",
+                "ordre marche, retour défaut, FT": "CPR001REF003",
+                "ordre marche, retour défaut, retour marche": "CPR001REF004",
+                "retour défaut, retour marche": "CPR001REF005"
+            },
+            "Secheur à adsorbtion": {
+                "retour défaut": "CPR002REF001",
+                "ordre marche, retour défaut": "CPR002REF002",
+                "ordre marche, retour défaut, mode éco": "CPR002REF003",
+                "ordre marche, retour défaut, FT": "CPR002REF004",
+                "ordre marche, retour défaut, FT, mode éco": "CPR002REF005",
+                "ordre marche, retour défaut, retour marche, FT": "CPR002REF006",
+                "retour défaut, retour marche, FT": "CPR002REF007"
+            },
+            "Separateur de condensat": {
+                "BEKOSPLIT": "CPR003REF001"
+            },
+            "Corps chauffants": {
+                "Rechauffeur electrique": "CPR004REF001",
+                "Resistance de traçage": "CPR004REF002",
+                "Rechauffeur controlé": "CPR004REF003"
+            },
+            "Purgeur": {
+                "standard sans retour de defaut": "CPR005REF001",
+                "standard avec retour de defaut": "CPR005REF002",
+                "piloté sans retour de defaut": "CPR005REF003",
+                "piloté avec retour de defaut": "CPR005REF004"
+            }
+        }
+    },
+    "Vannes": {
+        "title": "Vannes & Volets",
+        "data": {
+            "Vanne 2 voies pneumatique": {
+                "monostable simple": "VVS000REF001",
+                "monostable + retour de position": "VVS000REF002",
+                "bistable simple": "VVS000REF003",
+                "bistable + retour de position": "VVS000REF004"
+            },
+            "Vanne 2 voies motorisée": {
+                "TOR": "VVS001REF001",
+                "TOR, retour de position": "VVS001REF002",
+                "Pilotée (4-20mA)": "VVS001REF003",
+                "Pilotée (4-20mA), retour de position (4-20mA)": "VVS001REF004",
+                "Pilotée, PT amont": "VVS001REF005",
+                "Pilotée, PT amont, PT aval": "VVS001REF006"
+            },
+            "Vanne 3 voies pneumatique": {
+                "Monostable simple": "VVS002REF001",
+                "Monostable + retour de position": "VVS002REF002",
+                "Bistable simple": "VVS002REF003",
+                "Bistable + retour de position": "VVS002REF004"
+            },
+            "Vanne 3 voies motorisée": {
+                "Simple": "VVS003REF001",
+                "Simple + retour de position": "VVS003REF002",
+                "Pilotée": "VVS003REF003",
+                "Pilotée + retour de position (analogique)": "VVS003REF004"
+            },
+            "Registre motorisée": {
+                "Simple": "VVS004REF001",
+                "Simple + retour de position": "VVS004REF002",
+                "Pilotée": "VVS004REF003",
+                "Pilotée + retour de position (analogique)": "VVS004REF004"
+            },
+            "Vannes solénoides (TOR)": {
+                "standard": "VVS005REF001"
+            }
+        }
+    },
+    "Analyseurs": {
+        "title": "Analyseurs",
+        "data": {
+            "Analiseurs d'air": {
+                "ULTRAMAT": "ANS000REF001",
+                "VAR-18": "ANS000REF002",
+                "Analiseurs d'oxygene": "ANS000REF003"
+            }
+        }
+    },
+    "Machines": {
+        "title": "Machines",
+        "data": {
+            "Compresseurs": {
+                "standard": "MAC000REF001",
+                "avec options": "MAC000REF002",
+                "Débit fixe (OpenAir)": "MAC000REF003",
+                "Débit variable (OpenAir)": "MAC000REF004",
+                "Centrifuge (OpenAir)": "MAC000REF005"
+            },
+            "Surpresseur": {
+                "standard": "MAC001REF001"
+            },
+            "Ventillateur": {
+                "simple": "MAC002REF001",
+                "Avec retour defaut": "MAC002REF002"
+            },
+            "Pompe à eau": {
+                "standard": "MAC003REF001"
+            },
+            "Pompe à vide": {
+                "standard": "MAC004REF001"
+            }
+        }
+    },
+    "Ressources": {
+        "title": "Ressources",
+        "data": {
+            "Digital Devices": {
+                "Input": "RCS000REF001",
+                "Output": "RCS000REF002"
+            },
+            "Analog Devices": {
+                "Input": "RCS001REF001",
+                "Temperature": "RCS001REF002",
+                "Output": "RCS001REF003"
+            }
+        }
+    }
+}

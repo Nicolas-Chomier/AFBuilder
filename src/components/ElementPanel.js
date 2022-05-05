@@ -17,14 +17,11 @@ const ElementPanel = ({ data, output }) => {
   const textRef = useRef("");
   // Validation datas function to create a object carrying results
   function handleClick() {
-    if (selection !== false && textRef !== "") {
+    if (selection !== false && textRef.current?.value !== "") {
       output({
         title: title,
-        id: selection["id"],
-        name: selection["generic name"],
-        categorie: title,
+        id: selection,
         tag: `${textRef.current?.value}`,
-        group: 1,
       });
     } else {
       alert("Something missing !");
