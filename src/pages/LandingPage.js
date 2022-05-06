@@ -8,10 +8,10 @@ import ToggleSwitch from "../components/ToggleSwitch";
 import ElementPanel from "../components/ElementPanel";
 import Array from "../components/Array";
 import Number from "../components/Number";
-//
+// Logic
 import publicDatas from "../data/front/public.json";
-import { build } from "../library/mainConstructor";
-//
+import { build } from "../library/build";
+// JSON
 const pub = JSON.parse(JSON.stringify(publicDatas));
 // Datas importation
 const ihmProface = pub.ihmProface;
@@ -21,7 +21,7 @@ const Vannes = pub.Vannes;
 const Analyseurs = pub.Analyseurs;
 const Machines = pub.Machines;
 const Ressources = pub.Ressources;
-//
+// Get infos from front (elements array)
 function fetchDatas() {
   const finalResults = [];
   finalResults.length = 0;
@@ -35,7 +35,7 @@ function fetchDatas() {
   }
   return finalResults;
 }
-//
+// React JSX
 const LandingPage = () => {
   const [resultProjectName, setResultProjectName] = useState("NoName");
   const [openAirStatus, setOpenAirStatus] = useState(false);
@@ -124,10 +124,10 @@ const LandingPage = () => {
             variant="contained"
             onClick={() => {
               const mainArray = fetchDatas();
-              build(mainObject, mainArray, false);
+              build(mainObject, mainArray, 0);
             }}
           >
-            Chiffrage du Projet
+            Analyse Fonctionnelle
           </Button>
         </CardActions>
       </Grid>
@@ -138,15 +138,14 @@ const LandingPage = () => {
             color="success"
             onClick={() => {
               const mainArray = fetchDatas();
-              build(mainObject, mainArray, false);
+              build(mainObject, mainArray, 1);
             }}
           >
-            Analyse Fonctionnelle
+            Chiffrage du Projet
           </Button>
         </CardActions>
       </Grid>
     </Grid>
   );
 };
-
 export default LandingPage;
