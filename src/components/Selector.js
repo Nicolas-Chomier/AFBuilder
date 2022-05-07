@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 const Selector = ({ title, data, result }) => {
+  //console.log(data);
   const displayedData = [...Object.keys(data)];
   return (
     <Card sx={{ py: 1.5, width: "100%" }} elevation={5}>
@@ -33,7 +34,7 @@ const Selector = ({ title, data, result }) => {
               autoWidth={true}
               label="ScreenSelector"
               onChange={(e) => {
-                result(e.target.value);
+                result(data[e.target.value]);
               }}
               sx={{ minWidth: 160 }}
             >

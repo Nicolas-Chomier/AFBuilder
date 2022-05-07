@@ -39,7 +39,7 @@ function fetchDatas() {
 const LandingPage = () => {
   const [resultProjectName, setResultProjectName] = useState("NoName");
   const [openAirStatus, setOpenAirStatus] = useState(false);
-  const [selectedScreen, setSelectedScreen] = useState("LT4000");
+  const [selectedScreen, setSelectedScreen] = useState(false);
   const [reservedSlots, setReservedSlots] = useState({
     NI: 0,
     NO: 0,
@@ -56,8 +56,8 @@ const LandingPage = () => {
   const mainObject = {
     ProjectName: resultProjectName,
     OpenAir: openAirStatus,
-    Screen: selectedScreen,
-    Slots: reservedSlots,
+    ScreenID: selectedScreen,
+    reservedSlots: reservedSlots,
     Coef: coefficient,
     language: language,
     architectureSection: architectureSection,

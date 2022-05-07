@@ -1,5 +1,4 @@
 export const productSheet = {
-  category: "Instrumentations",
   ID: "IST000REF001",
   name: "Transmetteur de pression",
   infos:
