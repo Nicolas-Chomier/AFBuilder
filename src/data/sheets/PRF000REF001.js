@@ -1,4 +1,5 @@
 export const productSheet = {
+  BRAND: "PROFACE",
   PIC: "LT4000",
   IO: {
     DI: 12,

@@ -43,7 +43,7 @@ export function functionalAnalysis(obj = {}) {
           },
           paragraph: {
             spacing: {
-              before: 10,
+              before: 120,
               after: 120,
             },
           },
@@ -191,7 +191,7 @@ export function functionalAnalysis(obj = {}) {
             style: "STD",
           }),
           new Paragraph({
-            text: "Documents de réferences",
+            text: "Documents de références",
             heading: HeadingLevel.HEADING_2,
           }),
           new Paragraph({
@@ -376,6 +376,43 @@ export function functionalAnalysis(obj = {}) {
             ],
           }),
           //+ Chapter 2:
+          new Paragraph({
+            text: "Architecture de l'installation",
+            heading: HeadingLevel.HEADING_1,
+          }),
+          new Paragraph({
+            text: "IHM & CPU",
+            heading: HeadingLevel.HEADING_2,
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `Cette installation est pilotée par un automate et un IHM de marque ${obj.ScreenInfos.BRAND} installé dans l'armoire de commande sous la référence: `,
+              }),
+              new TextRun({
+                text: "REF ARMOIRE DE COMMANDE",
+                bold: true,
+              }),
+              new TextRun({
+                break: 1,
+                text: "L'enssemble est composé de: ",
+              }),
+            ],
+            style: "STD",
+          }),
+          new Paragraph({
+            text: "L'Interface Homme Machine (IHM):",
+            heading: HeadingLevel.HEADING_4,
+          }),
+          /* obj.ScreenInfos.HMI.Devices.map(
+            (x) =>
+              new Paragraph({
+                text: x,
+                bullet: {
+                  level: 0,
+                },
+              })
+          ), */
         ],
       },
     ],
