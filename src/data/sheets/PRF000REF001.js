@@ -8,24 +8,29 @@ export const productSheet = {
     AO: 2,
     AIt: 2,
   },
+  CIO: "Modicon TM3 (Schneider Electric)",
   PLC: {
     Denomination: "LT4000M Series",
     Ref: "PFXLM4301TADAC",
     Devices: [
-      "RS-232C/RS485 x 1 (Connector type: RJ45)",
-      "Ethernet x 1 @",
-      "USB 2.0 (Type A) x 1",
-      "USB 2.0 (mini-B) x 1",
+      "Connectique principale: RS-232C/RS485 (Connecteur type: RJ45)",
+      "Connectique Ethernet",
+      "Prise USB 2.0 (type A)",
+      "Prise USB 2.0 (mini-B)",
     ],
   },
   HMI: {
     Denomination: "LT4000M Series",
     Ref: "PFXLM4301TADAC",
-    Devices: ["TFT Color LCD", "320 x 240 (QVGA)", "5.7” wide"],
+    Devices: [
+      "Ecran type: TFT Color LCD",
+      "Résolution: 320 x 240 (QVGA)",
+      "Taille d'écran: 5.7” wide",
+    ],
   },
   CAN: {
     Denomination: "LT4000M Series",
     Ref: "PFXLM4301TADAC",
-    Devices: ["CAN-CiA (ISO 11898-2:2002 Part 2), Connector: D-sub9 (pin)"],
+    Devices: ["Norme: CAN-CiA (ISO 11898-2:2002)", "Connecteur type: Sub-D 9"],
   },
 };

@@ -46,6 +46,9 @@
             },
             "Capteur hybride": {
                 "Débit & T°": "IST009REF001"
+            },
+            "Centrale de mesure multifonction": {
+                "DIRIS A-10": "IST010REF001"
             }
         }
     },

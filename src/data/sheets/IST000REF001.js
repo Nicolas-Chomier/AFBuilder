@@ -9,7 +9,6 @@ export const productSheet = {
     "PDT = Transmetteur de pression différentielle",
   ],
   IO: { DI: 0, DO: 0, AI: 1, AO: 0, AIt: 0 },
-  // a voir...
   Text: {
     DI: "",
     DO: "",
@@ -37,6 +36,6 @@ export const productSheet = {
     ["def_SH_[TAG]", "PMI", "Affichage d'un avertissement"],
     ["def_SHH_[TAG]", "PMA", "Retour à l'etat par défaut"],
   ],
-  ConsumerName: false,
+  PROTOCOLE: false,
   FunctionBloc: "FB001",
 };

@@ -9,7 +9,6 @@ export const productSheet = {
     "PDT = Transmetteur de pression différentielle",
   ],
   IO: { DI: 1, DO: 0, AI: 1, AO: 0, AIt: 0 },
-  // a voir...
   Text: {
     DI: "Envoi d'un signal numérique",
     DO: "",
@@ -37,7 +36,6 @@ export const productSheet = {
     AIt: [[]],
   },
   FAULTS: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
-
-  ConsumerName: false,
+  PROTOCOLE: false,
   FunctionBloc: false,
 };

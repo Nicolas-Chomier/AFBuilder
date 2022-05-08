@@ -45,6 +45,6 @@ export const productSheet = {
     ["def_[TAG]_1", "PMI", "Entrée PLC activée après 3 secondes"],
     ["def_[TAG]_2", "PMA", "Entrée PLC activée après 3 secondes"],
   ],
-  ConsumerName: false,
+  PROTOCOLE: false,
   FunctionBloc: "test",
 };
