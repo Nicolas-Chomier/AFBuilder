@@ -21,5 +21,5 @@ export const productSheet = {
   },
   FAULTS: [[]],
   PROTOCOLE: "Modbus RS-485",
-  FunctionBloc: "",
+  FB: "",
 };

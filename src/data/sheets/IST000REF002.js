@@ -37,5 +37,5 @@ export const productSheet = {
   },
   FAULTS: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
   PROTOCOLE: false,
-  FunctionBloc: false,
+  FB: false,
 };

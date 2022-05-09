@@ -7,6 +7,8 @@ import {
   TextRun,
   convertInchesToTwip,
   UnderlineType,
+  HorizontalPositionAlign,
+  HorizontalPositionRelativeFrom,
   HeadingLevel,
   AlignmentType,
   LevelFormat,
@@ -16,6 +18,11 @@ import {
 import { Packer, Document } from "docx";
 import { saveAs } from "file-saver";
 import { Buffer } from "buffer";
+// Images
+import { CCOULEUR } from "../../data/images/CCOULEUR.js";
+import { IRV } from "../../data/images/IRV.js";
+import { IWV } from "../../data/images/IWV.js";
+import { ALARMES } from "../../data/images/ALARMES.js";
 
 const TITRE1 = "4B6FEA";
 const TITRE2 = "4BA9EA";
@@ -24,9 +31,11 @@ const white = "FFFFFF";
 const darkGrey = "2F2F2F";
 const grey = "878787";
 const black = "000000";
-const core = [];
 
 export function functionalAnalysis(obj = {}) {
+  const core = [];
+  let FB001 = false;
+  console.log("start");
   //+ Chapter 1:
   core.push(
     new Paragraph({
@@ -431,9 +440,190 @@ export function functionalAnalysis(obj = {}) {
       text: "Mots de passes et niveaux d'accès",
       heading: HeadingLevel.HEADING_3,
     }),
-    new Paragraph({
-      text: "============================================================",
-      style: "STD",
+    new Table({
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Tableau des niveaux d'accès",
+                  style: "GAL1",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: darkGrey,
+              },
+              columnSpan: 4,
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Nom",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Niveau",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Permissions",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Mot de passe",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Utilisateur",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Visualisation",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Opérateur",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "1",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Marche / Arrêt de l'installation et acquittement des alarmes",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "1",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Administrateur",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "2",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Marche / Arrêt de l'installation, acquittement des alarmes, paramétrage de l'installation, accès à la vue du système.",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "2",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
     }),
     new Paragraph({
       text: "Information PLC",
@@ -460,6 +650,525 @@ export function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
+  //+ Chapter 5:
+  core.push(
+    new Paragraph({
+      text: "Abréviations",
+      heading: HeadingLevel.HEADING_1,
+    }),
+    new Table({
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Tableau des abréviations",
+                  style: "GAL1",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: darkGrey,
+              },
+              columnSpan: 3,
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Abréviations",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Nom complet",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Déscription",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "ATMP",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Atmospheric Pressure",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "1 Bar",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MES",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Message",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Message / information",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TMA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Technical Major Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Défaut technique entrainant l'arrêt de l'installation",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TMI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Technical Minor Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Défaut technique sans arrêt de l'installation",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "PMA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Process Major Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Dépassement de seuil dans le processus avec un impact sur la qualité du produit",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "PMI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Process Minor Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Dépassement de seuil dans le processus sans impact sur la qualité du produit",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "DI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Digital Input",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Input 1 or 0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "DO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Digital Output",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Output 1 or 0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "AI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Analog Input",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Input 4-20mA (for example)",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "AI(T°)",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Analog Input (T°)",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Special Input for PT100 / 1000 or thermocouple",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "AO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Analog Output",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Output 4-20mA (for example)",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    })
+  );
+  //+ Chapter 6:
+  core.push(
+    new Paragraph({
+      text: "Code couleurs",
+      heading: HeadingLevel.HEADING_1,
+    }),
+    new Paragraph({
+      text: "Résumé / vue IHM",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      children: [
+        new ImageRun({
+          data: Buffer.from(CCOULEUR, "base64"),
+          transformation: {
+            width: 450,
+            height: 310,
+          },
+        }),
+      ],
+    }),
+    new Paragraph({
+      text: "Affichage numérique",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "Différents types de variables analogiques sont présents sur les différentes vues.",
+        }),
+        new TextRun({
+          text: "Pour certaines, il est seulement possible de visualiser la valeur, pour d'autres, il est possible d'entrer une valeur.",
+          break: 1,
+        }),
+        new TextRun({
+          text: "Valeur en lecture et en écriture:",
+          bold: true,
+          break: 1,
+        }),
+      ],
+      style: "STD",
+    }),
+    new Paragraph({
+      children: [
+        new ImageRun({
+          data: Buffer.from(IWV, "base64"),
+          transformation: {
+            width: 60,
+            height: 30,
+          },
+        }),
+      ],
+    }),
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "Valeur en lecture seule:",
+          bold: true,
+        }),
+      ],
+      style: "STD",
+    }),
+    new Paragraph({
+      children: [
+        new ImageRun({
+          data: Buffer.from(IRV, "base64"),
+          transformation: {
+            width: 60,
+            height: 30,
+          },
+        }),
+      ],
+    }),
+    new Paragraph({
+      text: "Alarmes et défauts",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      children: [
+        new ImageRun({
+          data: Buffer.from(ALARMES, "base64"),
+          transformation: {
+            width: 450,
+            height: 310,
+          },
+        }),
+      ],
+    }),
+    new Paragraph({
+      text: "Explications",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "Les alarmes qui ont disparu sont indiquées en blanc.",
+        }),
+        new TextRun({
+          text: "La date et l'heure de déclenchement de l'alarme sont indiquées à gauche.",
+          break: 1,
+        }),
+        new TextRun({
+          text: "Le nombre de fois que l'alarme a été déclenchée est indiqué à droite du texte.",
+          break: 1,
+        }),
+        new TextRun({
+          text: "La suppression d'une alarme disparue se fait en sélectionnant la ligne concernée puis en appuyant sur le bouton 'Supprimer' (niveau 1 requis).",
+          break: 1,
+        }),
+        new TextRun({
+          text: "Pour supprimer toutes les alarmes disparues, sélectionnez la table des alarmes et appuyez sur le bouton 'Supprimer tout' (niveau 1 requis).",
+          break: 1,
+        }),
+      ],
+      style: "STD",
+    })
+  );
+  //+ Chapter 7:
+  console.log("!!!");
+  for (const elem of obj.ElementInfos) {
+    console.log("plop");
+    if (elem.Infos.FB === "FB001") {
+      console.log("FB");
+      FB001 = true;
+    }
+  }
+  if (FB001) {
+    console.log("FB001");
+    core.push(
+      new Paragraph({
+        text: "Description du bloc de fonction FB001",
+        heading: HeadingLevel.HEADING_1,
+      }),
+      new Paragraph({
+        text: "Description générale",
+        heading: HeadingLevel.HEADING_2,
+      })
+    );
+  }
   //* Document structure
   const doc = new Document({
     creator: "NCR",

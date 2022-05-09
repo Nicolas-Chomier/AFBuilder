@@ -37,5 +37,5 @@ export const productSheet = {
     ["def_SHH_[TAG]", "PMA", "Retour à l'etat par défaut"],
   ],
   PROTOCOLE: false,
-  FunctionBloc: "FB001",
+  FB: "FB001",
 };

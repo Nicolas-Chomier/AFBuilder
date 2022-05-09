@@ -46,5 +46,5 @@ export const productSheet = {
     ["def_[TAG]_2", "PMA", "Entrée PLC activée après 3 secondes"],
   ],
   PROTOCOLE: false,
-  FunctionBloc: "test",
+  FB: "test",
 };

@@ -20,5 +20,5 @@ export const productSheet = {
   },
   FAULTS: [[]],
   PROTOCOLE: false,
-  FunctionBloc: "",
+  FB: "",
 };
