@@ -3,11 +3,11 @@ export const productSheet = {
   name: "Transmetteur de pression avec un contact sec",
   infos:
     "Un capteur de pression est un système qui convertit une pression mécanique en une valeur électrique. Celui-ci peut fournir une information numérique en plus.",
-  Labels: [
-    "PIT = Transmetteur à indicateur de pression",
-    "PT = Transmetteur de pression",
-    "PDT = Transmetteur de pression différentielle",
-  ],
+  PINS: {
+    PIT: "Transmetteur à indicateur de pression",
+    PT: "Transmetteur de pression",
+    PDT: "Transmetteur de pression différentielle",
+  },
   IO: { DI: 1, DO: 0, AI: 1, AO: 0, AIt: 0 },
   Text: {
     DI: "Envoi d'un signal numérique",
@@ -35,7 +35,10 @@ export const productSheet = {
     AO: [[]],
     AIt: [[]],
   },
-  FAULTS: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
+  FAULTS: {
+    ARRAY: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
+    OVERALL: [[]],
+  },
   PROTOCOLE: false,
   FB: false,
 };

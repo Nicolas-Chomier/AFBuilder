@@ -5,10 +5,6 @@ import {
   ShadingType,
   Paragraph,
   TextRun,
-  convertInchesToTwip,
-  UnderlineType,
-  HorizontalPositionAlign,
-  HorizontalPositionRelativeFrom,
   HeadingLevel,
   AlignmentType,
   LevelFormat,
@@ -18,12 +14,16 @@ import {
 import { Packer, Document } from "docx";
 import { saveAs } from "file-saver";
 import { Buffer } from "buffer";
+//
+import { generateCmdTable } from "./generateCmdTable";
+import { generateFaultTable } from "./generateFaultTable";
 // Images
 import { CCOULEUR } from "../../data/images/CCOULEUR.js";
 import { IRV } from "../../data/images/IRV.js";
 import { IWV } from "../../data/images/IWV.js";
 import { ALARMES } from "../../data/images/ALARMES.js";
 
+//
 const TITRE1 = "4B6FEA";
 const TITRE2 = "4BA9EA";
 const TITRE3 = "4BEAC3";
@@ -32,10 +32,9 @@ const darkGrey = "2F2F2F";
 const grey = "878787";
 const black = "000000";
 
-export function functionalAnalysis(obj = {}) {
+export async function functionalAnalysis(obj = {}) {
   const core = [];
   let FB001 = false;
-  console.log("start");
   //+ Chapter 1:
   core.push(
     new Paragraph({
@@ -1148,16 +1147,13 @@ export function functionalAnalysis(obj = {}) {
     })
   );
   //+ Chapter 7:
-  console.log("!!!");
   for (const elem of obj.ElementInfos) {
-    console.log("plop");
     if (elem.Infos.FB === "FB001") {
-      console.log("FB");
       FB001 = true;
     }
   }
   if (FB001) {
-    console.log("FB001");
+    const b64Img = await import("../../data/images/VUEFB001.js");
     core.push(
       new Paragraph({
         text: "Description du bloc de fonction FB001",
@@ -1166,10 +1162,734 @@ export function functionalAnalysis(obj = {}) {
       new Paragraph({
         text: "Description générale",
         heading: HeadingLevel.HEADING_2,
+      }),
+      new Paragraph({
+        text: "Il s'agit d'une installation entièrement personnalisée, cependant certains éléments sont identiques, pour eux nous utiliserons la méthode de programmation par blocs fonctionnels (FB).L'instrumentation sera gérée par des blocs standardisés, afin d'assurer une homogénéisation de la programmation. Ce chapitre présente leurs fonctionnalités.",
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Bloc de fonctions 'Mesures analogiques'",
+        heading: HeadingLevel.HEADING_2,
+      }),
+      new Paragraph({
+        text: "Le bloc de fonction FB001 est utilisé pour: ",
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Afficher la valeur mesurée à partir d'un signal électrique (4-20mA ou 0-10V).",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Définir l'échelle de la valeur mesurée.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Filtrer la valeur mesurée.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Ajouter un décalage (offset) qui peut corriger une dérivation potentielle.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Forcer une valeur à effectuer des tests.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Gérer l'affichage et les échelles des courbes.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Détecter une panne du capteur.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Mémoriser 4 seuils d'alarmes et un défaut de capteur.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "La gestion de 4 seuils d'alarmes, chaque seuil peut être activé ou désactivé via le panneau (ces seuils sont utilisés pour le diagnostic, ils ne sont pas utilisés pour le processus, toutes les alarmes sont temporisées).",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Récupérer les paramètres d'usine.",
+        bullet: {
+          level: 0,
+        },
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Gestion et description des défauts",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      new Table({
+        width: {
+          size: 100,
+          type: WidthType.PERCENTAGE,
+        },
+        rows: [
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Tableau des défauts",
+                    style: "GAL1",
+                  }),
+                ],
+                shading: {
+                  type: ShadingType.SOLID,
+                  color: darkGrey,
+                },
+                columnSpan: 4,
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Label",
+                    style: "GAL2",
+                  }),
+                ],
+                shading: {
+                  type: ShadingType.SOLID,
+                  color: grey,
+                },
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Désignation",
+                    style: "GAL2",
+                  }),
+                ],
+                shading: {
+                  type: ShadingType.SOLID,
+                  color: grey,
+                },
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Type",
+                    style: "GAL2",
+                  }),
+                ],
+                shading: {
+                  type: ShadingType.SOLID,
+                  color: grey,
+                },
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Effet",
+                    style: "GAL2",
+                  }),
+                ],
+                shading: {
+                  type: ShadingType.SOLID,
+                  color: grey,
+                },
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "def_signal_[TAG]",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Défaut du capteur",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "TMI",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Afficher un avertissement",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "def_SL_[TAG]",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Défaut seuil bas",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "PMI",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Afficher un avertissement",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "def_SLL_[TAG]",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Défaut seuil très bas",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "PMA",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Ramener l'installation à l'état par défaut",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "def_SH_[TAG]",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Défaut seuil haut",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "PMI",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Afficher un avertissement",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "def_SHH_[TAG]",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Défaut seuil très haut",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "PMA",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+              new TableCell({
+                children: [
+                  new Paragraph({
+                    text: "Ramener l'installation à l'état par défaut",
+                    style: "GAL3",
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
+      }),
+      new Paragraph({
+        text: "Vue IHM FB001",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      new Paragraph({
+        children: [
+          new ImageRun({
+            data: Buffer.from(b64Img.VUEFB001, "base64"),
+            transformation: {
+              width: 450,
+              height: 310,
+            },
+          }),
+        ],
+      }),
+      new Paragraph({
+        text: "Description",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "N°1:  ",
+            bold: true,
+          }),
+          new TextRun({
+            text: " Bouton poussoir d'activation du défaut du capteur [TAG]",
+          }),
+          new TextRun({
+            text: "N°2:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Affichage de la mesure [TAG]",
+          }),
+          new TextRun({
+            text: "N°3:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglage de la temporisation avant défaut [TAG]",
+          }),
+          new TextRun({
+            text: "N°4:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Mémorisation du défaut [TAG]",
+          }),
+          new TextRun({
+            text: "N°5:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication lumineuse du défaut [TAG]",
+          }),
+          new TextRun({
+            text: "N°6:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Bouton d'activation de forçage [TAG]",
+          }),
+          new TextRun({
+            text: "N°7:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication de la valeur forcée [TAG]",
+          }),
+          new TextRun({
+            text: "N°8:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indicateur valeur forcée [TAG]",
+          }),
+          new TextRun({
+            text: "N°9:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Activation défaut SHH [TAG]",
+          }),
+          new TextRun({
+            text: "N°10:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglage SHH [TAG]",
+          }),
+          new TextRun({
+            text: "N°11:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Temporisation du défaut de signal SHH [TAG]",
+          }),
+          new TextRun({
+            text: "N°12:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Mémorisation du défaut SHH [TAG]",
+          }),
+          new TextRun({
+            text: "N°13:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication lumineuse SHH [TAG]",
+          }),
+          new TextRun({
+            text: "N°14:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Activation défaut SH [TAG]",
+          }),
+          new TextRun({
+            text: "N°15:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglage SH [TAG]",
+          }),
+          new TextRun({
+            text: "N°16:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Temporisation du défaut de signal SH [TAG]",
+          }),
+          new TextRun({
+            text: "N°17:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Mémorisation du défaut SH [TAG]",
+          }),
+          new TextRun({
+            text: "N°18:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication lumineuse SH [TAG]",
+          }),
+          new TextRun({
+            text: "N°19:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Activation défaut SL [TAG]",
+          }),
+          new TextRun({
+            text: "N°20:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglage SL [TAG]",
+          }),
+          new TextRun({
+            text: "N°21:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Temporisation du défaut de signal SL [TAG]",
+          }),
+          new TextRun({
+            text: "N°22:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Mémorisation du défaut SL [TAG]",
+          }),
+          new TextRun({
+            text: "N°23:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication lumineuse SL [TAG]",
+          }),
+          new TextRun({
+            text: "N°24:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Activation défaut SLL [TAG]",
+          }),
+          new TextRun({
+            text: "N°25:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglage SLL [TAG]",
+          }),
+          new TextRun({
+            text: "N°26:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Temporisation du défaut de signal SLL [TAG]",
+          }),
+          new TextRun({
+            text: "N°27:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Mémorisation du défaut SLL [TAG]",
+          }),
+          new TextRun({
+            text: "N°28:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Indication lumineuse SLL [TAG]",
+          }),
+          new TextRun({
+            text: "N°29:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglages de l'échelle MAX [TAG]",
+          }),
+          new TextRun({
+            text: "N°30:  ",
+            break: 1,
+            bold: true,
+          }),
+          new TextRun({
+            text: " Réglages de l'échelle MIN [TAG]",
+          }),
+        ],
+        style: "STD",
       })
     );
   }
-  //* Document structure
+  //+ Chapter 8:
+  core.push(
+    new Paragraph({
+      text: "Fonctionnement de l'installation",
+      heading: HeadingLevel.HEADING_1,
+    }),
+    new Paragraph({
+      text: "==============================================================================================================================================================================",
+      style: "STD",
+    })
+  );
+  //+ Chapter 9:
+  core.push(
+    new Paragraph({
+      text: "Définitions des objets",
+      heading: HeadingLevel.HEADING_1,
+    })
+  );
+  for (const elem of obj.ElementInfos) {
+    // Get PINS table
+    const pinsObj = elem.Infos.PINS;
+    // Build CMD table
+    const commandTable = generateCmdTable(elem);
+    // Build FAULT table
+    const faultTable = generateFaultTable(elem);
+    // Push Title and introduction texte
+    core.push(
+      new Paragraph({
+        text: `${elem.Infos.NAME}, Tag N° ${elem.tag}`,
+        heading: HeadingLevel.HEADING_2,
+      }),
+      new Paragraph({
+        text: "Informations",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      new Paragraph({
+        text: `${elem.Infos.INFO}`,
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+        style: "STD",
+      })
+    );
+    // Push different label from PINS table
+    for (const [key, value] of Object.entries(pinsObj)) {
+      core.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `<${key}>`,
+              bold: true,
+            }),
+            new TextRun({
+              text: " = ",
+            }),
+            new TextRun({
+              text: value,
+            }),
+          ],
+          style: "STD",
+        })
+      );
+    }
+    core.push(
+      // Push titles and commande tables
+      new Paragraph({
+        text: "Commande(s)",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      commandTable,
+      // Push titles and fault tables
+      new Paragraph({
+        text: "Défaut(s)",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      faultTable
+    );
+  }
+  //+ Chapter 10:
+  core.push(
+    new Paragraph({
+      text: "Gestion des alarmes",
+      heading: HeadingLevel.HEADING_1,
+    }),
+    new Paragraph({
+      text: "Introduction",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      text: "La gestion de la sécurité partage quatre niveaux de défauts. Toutes les familles de défauts, lorsqu'elles sont déclenchées, déclenchent une synthèse et un message de défaut sur l'écran des alarmes de l'IHM. Une demande d'acquittement permet d'acquitter et de réinitialiser le défaut. Les alarmes sont classées en 2 catégories : ",
+      style: "STD",
+    }),
+    new Paragraph({
+      text: "Défaut mineur (TMI & PMI)",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Paragraph({
+      text: "Alerte sans impact immédiat sur la capacité du système à assurer les fonctions principales du processus ou lorsque l'état d'une mesure s'approche des limites ultimes d'un processus. Sans traitement, une alarme mineure peut conduire à une alarme majeure du fait de l'évolution du phénomène. Ce type d'alarme peut être traité en quelques jours et permet d'éviter les alarmes majeures.",
+      style: "STD",
+    }),
+    new Paragraph({
+      text: "Défaut majeur (TMA & PMA)",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Paragraph({
+      text: "État d'un équipement le rendant inopérant ou état d'une mesure ayant dépassé les spécifications ultimes d'un processus. Ce type d'alarme doit être traité comme une urgence afin d'éviter une perte de production et/ou un risque d'endommagement des équipements.",
+      style: "STD",
+    }),
+    new Paragraph({
+      text: "Liste des défauts",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      text: "===========================================================================================================================================================",
+      style: "STD",
+    })
+  );
+  //* Document structure & style
   const doc = new Document({
     creator: "NCR",
     title: "Draft",
@@ -1301,6 +2021,54 @@ export function functionalAnalysis(obj = {}) {
         },
         {
           // Normal / Standard style
+          id: "BOLD",
+          name: "BOLD",
+          basedOn: "Normal",
+          next: "Normal",
+          run: {
+            size: 18,
+            bold: true,
+            italics: false,
+            color: black,
+            font: "Calibri",
+          },
+          paragraph: {
+            spacing: {
+              before: 0,
+              after: 0,
+              line: 276,
+            },
+            indent: {
+              left: 0,
+            },
+          },
+        },
+        {
+          // Normal / Standard style only for table design
+          id: "STDTABLE",
+          name: "STDTABLE",
+          basedOn: "Normal",
+          next: "Normal",
+          run: {
+            size: 18,
+            bold: false,
+            italics: false,
+            color: black,
+            font: "Calibri",
+          },
+          paragraph: {
+            spacing: {
+              before: 0,
+              after: 0,
+              line: 276,
+            },
+            indent: {
+              left: 0,
+            },
+          },
+        },
+        {
+          // Normal / Standard style
           id: "STD",
           name: "STD",
           basedOn: "Normal",
@@ -1314,7 +2082,7 @@ export function functionalAnalysis(obj = {}) {
           },
           paragraph: {
             spacing: {
-              before: 80,
+              before: 50,
               after: 0,
               line: 276,
             },
@@ -1344,7 +2112,7 @@ export function functionalAnalysis(obj = {}) {
   });
   //* Print document
   Packer.toBlob(doc).then((blob) => {
-    saveAs(blob, "afDraft.docx");
+    saveAs(blob, "Draft.docx");
   });
   return false;
 }

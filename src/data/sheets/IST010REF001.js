@@ -3,7 +3,7 @@ export const productSheet = {
   name: "Centrale de mesure multifonction",
   infos:
     "Le DIRIS A-10 est un appareil de multimesure des grandeurs électriques pour les réseaux BT au format modulaire avec raccordement sur transformateurs de courant. Il permet de visualiser tous les paramètres électriques et d’exploiter les fonctions de mesure, de comptage des énergies et de communication.",
-  Labels: [],
+  PINS: {},
   IO: { DI: 0, DO: 0, AI: 0, AO: 0, AIt: 0 },
   Text: {
     DI: "",
@@ -21,5 +21,5 @@ export const productSheet = {
   },
   FAULTS: [[]],
   PROTOCOLE: "Modbus RS-485",
-  FB: "",
+  FB: false,
 };
