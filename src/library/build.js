@@ -1,5 +1,5 @@
-import { functionalAnalysis } from "./Methods/functionalAnalysis";
-import { quotation } from "./Methods/quotation";
+import { functionalAnalysis } from "./functionalAnalysis";
+import { quotation } from "./quotation";
 
 //* collects information and launch document functions
 export async function build(rawObjInfo = {}, rawObjElem = [], nbs = 0) {
@@ -14,14 +14,16 @@ export async function build(rawObjInfo = {}, rawObjElem = [], nbs = 0) {
     rawObjInfo["elemntNbs"] = size;
     // Get elements information
     for (const value of Object.values(elements)) {
-      const elementModule = await import(`../data/sheets/${value.id}.js`);
+      const elementModule = await import(
+        `../data/productSheets/${value.id}.js`
+      );
       value["Infos"] = elementModule.productSheet;
     }
     // Get screen informations from data sheets
     const screenModule = await import(
-      `../data/sheets/${rawObjInfo.ScreenID}.js`
+      `../data/productSheets/${rawObjInfo.ScreenID}.js`
     );
-    const ScreenInfos = screenModule.productSheet;
+    const ScreenInfos = screenModule.screenSheet;
     // Build final dataset to send at document functions
     const dataSet = {};
     dataSet["ProjectInfos"] = rawObjInfo;

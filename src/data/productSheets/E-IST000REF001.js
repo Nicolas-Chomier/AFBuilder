@@ -1,5 +1,4 @@
 export const productSheet = {
-  ID: "IST000REF001",
   NAME: "Transmetteur de pression",
   INFO: "Un transmetteur de pression est un système qui convertit une pression mécanique en une valeur électrique.",
   PINS: {
@@ -7,13 +6,16 @@ export const productSheet = {
     PT: "Transmetteur de pression",
     PDT: "Transmetteur de pression différentielle",
   },
-  IO: { DI: 0, DO: 0, AI: 1, AO: 0, AIt: 0 },
+  OPENAIR: false,
+  PROTOCOLE: false,
+  FB: "FB001",
+  IO: { NI: 1, NO: 1, AI: 1, AO: 1, TI: 1 },
   TEXTS: {
-    DI: "",
-    DO: "",
-    AI: "Transmetteur de pression 4-20mA",
-    AO: "",
-    AIt: "",
+    DI: [""],
+    DO: [""],
+    AI: ["Transmetteur de pression 4-20mA"],
+    AO: [""],
+    AIt: [""],
   },
   // Consigne: mettre "FB" si les commandes sont gérées par un bloc fonction.
   CMD: {
@@ -39,6 +41,4 @@ export const productSheet = {
       ["def_SHH_[TAG]", "PMA", "Retour à l'etat par défaut"],
     ],
   },
-  PROTOCOLE: false,
-  FB: "FB001",
 };

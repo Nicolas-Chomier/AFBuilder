@@ -17,11 +17,14 @@ import { Buffer } from "buffer";
 //
 import { generateCmdTable } from "./generateCmdTable";
 import { generateFaultTable } from "./generateFaultTable";
+import { generateOverAllFaultTable } from "./generateOverAllFaultTable";
+import { calculIoList } from "./calculIoList";
+import { drawModuleLineUp } from "./drawModuleLineUp";
 // Images
-import { CCOULEUR } from "../../data/images/CCOULEUR.js";
-import { IRV } from "../../data/images/IRV.js";
-import { IWV } from "../../data/images/IWV.js";
-import { ALARMES } from "../../data/images/ALARMES.js";
+import { CCOULEUR } from "../data/images/CCOULEUR.js";
+import { IRV } from "../data/images/IRV.js";
+import { IWV } from "../data/images/IWV.js";
+import { ALARMES } from "../data/images/ALARMES.js";
 
 //
 const TITRE1 = "4B6FEA";
@@ -35,7 +38,7 @@ const black = "000000";
 export async function functionalAnalysis(obj = {}) {
   const core = [];
   let FB001 = false;
-  //+ Chapter 1:
+  //+ Chapter 1: "Présentation du document"
   core.push(
     new Paragraph({
       text: "Présentation du document",
@@ -239,7 +242,7 @@ export async function functionalAnalysis(obj = {}) {
       ],
     })
   );
-  //+ Chapter 2:
+  //+ Chapter 2: "Architecture de l'installation"
   core.push(
     new Paragraph({
       text: "Architecture de l'installation",
@@ -270,6 +273,7 @@ export async function functionalAnalysis(obj = {}) {
       heading: HeadingLevel.HEADING_3,
     })
   );
+  // Write Device infos
   obj.ScreenInfos.HMI.Devices.map((x) =>
     core.push(
       new Paragraph({
@@ -366,7 +370,7 @@ export async function functionalAnalysis(obj = {}) {
       return result;
     }
   });
-  //+ Chapter 3:
+  //+ Chapter 3: "Architecture réseaux"
   core.push(
     new Paragraph({
       text: "Architecture réseaux",
@@ -377,10 +381,10 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 4:
+  //+ Chapter 4: "Configurations et informations"
   core.push(
     new Paragraph({
-      text: "Configuration et information",
+      text: "Configurations et informations",
       heading: HeadingLevel.HEADING_1,
     }),
     new Paragraph({
@@ -649,7 +653,12 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 5:
+  //! TEST
+  const finalIOList = calculIoList(obj);
+  const lineUp = drawModuleLineUp(finalIOList);
+  console.log("result test =>", lineUp);
+  //! TEST
+  //+ Chapter 5: "Abréviations"
   core.push(
     new Paragraph({
       text: "Abréviations",
@@ -1029,7 +1038,7 @@ export async function functionalAnalysis(obj = {}) {
       ],
     })
   );
-  //+ Chapter 6:
+  //+ Chapter 6: "Code couleurs"
   core.push(
     new Paragraph({
       text: "Code couleurs",
@@ -1146,17 +1155,17 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 7:
+  //+ Chapter 7: "Bloc de fonctions"
   for (const elem of obj.ElementInfos) {
     if (elem.Infos.FB === "FB001") {
       FB001 = true;
     }
   }
   if (FB001) {
-    const b64Img = await import("../../data/images/VUEFB001.js");
+    const b64Img = await import("../data/images/VUEFB001.js");
     core.push(
       new Paragraph({
-        text: "Description du bloc de fonction FB001",
+        text: "Description du bloc de fonctions FB001",
         heading: HeadingLevel.HEADING_1,
       }),
       new Paragraph({
@@ -1172,7 +1181,7 @@ export async function functionalAnalysis(obj = {}) {
         heading: HeadingLevel.HEADING_2,
       }),
       new Paragraph({
-        text: "Le bloc de fonction FB001 est utilisé pour: ",
+        text: "Le bloc de fonctions FB001 est utilisé pour: ",
         style: "STD",
       }),
       new Paragraph({
@@ -1771,7 +1780,7 @@ export async function functionalAnalysis(obj = {}) {
       })
     );
   }
-  //+ Chapter 8:
+  //+ Chapter 8: "Fonctionnement de l'installation"
   core.push(
     new Paragraph({
       text: "Fonctionnement de l'installation",
@@ -1782,7 +1791,7 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 9:
+  //+ Chapter 9: "Définitions des objets"
   core.push(
     new Paragraph({
       text: "Définitions des objets",
@@ -1850,7 +1859,7 @@ export async function functionalAnalysis(obj = {}) {
       faultTable
     );
   }
-  //+ Chapter 10:
+  //+ Chapter 10: "Gestion des alarmes"
   core.push(
     new Paragraph({
       text: "Gestion des alarmes",
@@ -1883,12 +1892,13 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Liste des défauts",
       heading: HeadingLevel.HEADING_2,
-    }),
-    new Paragraph({
-      text: "===========================================================================================================================================================",
-      style: "STD",
     })
   );
+  for (const elem of obj.ElementInfos) {
+    const oaTable = generateOverAllFaultTable(elem);
+    core.push(oaTable);
+  }
+  //+ Suite ...
   //* Document structure & style
   const doc = new Document({
     creator: "NCR",

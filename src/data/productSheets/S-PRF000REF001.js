@@ -1,12 +1,12 @@
-export const productSheet = {
+export const screenSheet = {
   BRAND: "PROFACE",
   PIC: "LT4000",
   IO: {
-    DI: 12,
-    DO: 6,
-    AI: 2,
-    AO: 2,
-    AIt: 2,
+    NI: 0,
+    NO: 0,
+    AI: 0,
+    AO: 0,
+    TI: 0,
   },
   CIO: "Modicon TM3 (Schneider Electric)",
   PLC: {

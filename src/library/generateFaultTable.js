@@ -5,11 +5,7 @@ import {
   ShadingType,
   Paragraph,
   TextRun,
-  HeadingLevel,
-  AlignmentType,
-  LevelFormat,
   WidthType,
-  ImageRun,
 } from "docx";
 //
 const CUSTOM = "EB6272";

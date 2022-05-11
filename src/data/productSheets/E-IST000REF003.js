@@ -8,7 +8,7 @@ export const productSheet = {
     PT: "Transmetteur de pression",
     PDT: "Transmetteur de pression différentielle",
   },
-  IO: { DI: 2, DO: 0, AI: 1, AO: 0, AIt: 0 },
+  IO: { NI: 2, NO: 0, AI: 1, AO: 0, TI: 0 },
   // a voir...
   Text: {
     DI: "Envoi d'un signal numérique",

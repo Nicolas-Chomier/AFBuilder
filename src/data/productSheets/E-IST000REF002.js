@@ -8,7 +8,7 @@ export const productSheet = {
     PT: "Transmetteur de pression",
     PDT: "Transmetteur de pression différentielle",
   },
-  IO: { DI: 1, DO: 0, AI: 1, AO: 0, AIt: 0 },
+  IO: { NI: 1, NO: 0, AI: 1, AO: 0, TI: 0 },
   Text: {
     DI: "Envoi d'un signal numérique",
     DO: "",
@@ -37,7 +37,7 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
-    OVERALL: [[]],
+    OVERALL: [["eeee"]],
   },
   PROTOCOLE: false,
   FB: false,
