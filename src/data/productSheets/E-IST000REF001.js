@@ -9,7 +9,7 @@ export const productSheet = {
   OPENAIR: false,
   PROTOCOLE: false,
   FB: "FB001",
-  IO: { NI: 1, NO: 1, AI: 1, AO: 1, TI: 1 },
+  IO: { NI: 1, NO: 160, AI: 1, AO: 1, TI: 1 },
   TEXTS: {
     DI: [""],
     DO: [""],

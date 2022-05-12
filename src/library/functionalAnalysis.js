@@ -36,7 +36,10 @@ const grey = "878787";
 const black = "000000";
 
 export async function functionalAnalysis(obj = {}) {
+  //* Variable declaration
   const core = [];
+  const mainInputOutputList = calculIoList(obj); // {NI:xx,NO:yy, ...}
+  const mainModuleLineUpList = drawModuleLineUp(mainInputOutputList);
   let FB001 = false;
   //+ Chapter 1: "Présentation du document"
   core.push(
@@ -641,23 +644,386 @@ export async function functionalAnalysis(obj = {}) {
           text: `${obj.ScreenInfos.PLC.Ref}`,
           bold: true,
         }),
+        new TextRun({
+          text: "====================================================Image de l'automate choisi=======================================================",
+          break: 1,
+        }),
       ],
       style: "STD",
     }),
     new Paragraph({
-      text: "Agencement modules I/O",
+      text: `Agencement modules I/O, ${obj.ScreenInfos.BRAND}`,
       heading: HeadingLevel.HEADING_3,
-    }),
-    new Paragraph({
-      text: "============================================================",
-      style: "STD",
     })
   );
-  //! TEST
-  const finalIOList = calculIoList(obj);
-  const lineUp = drawModuleLineUp(finalIOList);
-  console.log("result test =>", lineUp);
-  //! TEST
+  // Drawing the module line up
+  for (const table of mainModuleLineUpList) {
+    const legendForLineUp = new Paragraph({
+      children: [],
+      style: "STD",
+    });
+    const drawingForLineUp = new Paragraph({
+      children: [],
+    });
+    for (const item of table) {
+      const leg = item[4];
+      const img = item[1];
+      // Dynamic import of image
+      const modImg = await import(`../data/images/${img}.js`);
+      // Get base64 str only
+      const moduleImgBase64 = modImg[img];
+      legendForLineUp.root.push(
+        new TextRun({
+          text: `MOD${leg}_ `,
+        })
+      );
+      drawingForLineUp.root.push(
+        new ImageRun({
+          data: Buffer.from(moduleImgBase64, "base64"),
+          transformation: {
+            width: 45,
+            height: 120,
+          },
+        })
+      );
+    }
+    core.push(legendForLineUp, drawingForLineUp);
+  }
+  // Module legend table
+  core.push(
+    new Paragraph({
+      text: "Légende et définition des modules",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Table({
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Légende",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Référence",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Définition",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: grey,
+              },
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD1",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3DI16G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "16 NI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD2",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3DI8G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "8 NI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD3",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3DQ16TG",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "16 NO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD4",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3DQ8TG",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "8 NO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD5",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3AI8G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "8 AI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD6",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3AQ4G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "4 AO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD7",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3TI4G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "4 TI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD8",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3BCCO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "CANOpen Slave",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MODA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3XTRA1",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Module Extension =>",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MODB",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3XREC1",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Module Extension <=",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    })
+  );
   //+ Chapter 5: "Abréviations"
   core.push(
     new Paragraph({
@@ -1898,7 +2264,6 @@ export async function functionalAnalysis(obj = {}) {
     const oaTable = generateOverAllFaultTable(elem);
     core.push(oaTable);
   }
-  //+ Suite ...
   //* Document structure & style
   const doc = new Document({
     creator: "NCR",
@@ -1924,7 +2289,7 @@ export async function functionalAnalysis(obj = {}) {
         },
         heading2: {
           run: {
-            size: 24,
+            size: 26,
             bold: false,
             italics: false,
             color: TITRE2,
@@ -1940,7 +2305,7 @@ export async function functionalAnalysis(obj = {}) {
         },
         heading3: {
           run: {
-            size: 20,
+            size: 24,
             bold: false,
             italics: false,
             color: TITRE3,
@@ -1990,7 +2355,7 @@ export async function functionalAnalysis(obj = {}) {
           basedOn: "Normal",
           next: "Normal",
           run: {
-            size: 18,
+            size: 20,
             bold: true,
             italics: false,
             color: black,
@@ -2012,7 +2377,7 @@ export async function functionalAnalysis(obj = {}) {
           basedOn: "Normal",
           next: "Normal",
           run: {
-            size: 18,
+            size: 20,
             bold: false,
             italics: false,
             color: black,
@@ -2036,7 +2401,7 @@ export async function functionalAnalysis(obj = {}) {
           basedOn: "Normal",
           next: "Normal",
           run: {
-            size: 18,
+            size: 20,
             bold: true,
             italics: false,
             color: black,
@@ -2060,7 +2425,7 @@ export async function functionalAnalysis(obj = {}) {
           basedOn: "Normal",
           next: "Normal",
           run: {
-            size: 18,
+            size: 20,
             bold: false,
             italics: false,
             color: black,
@@ -2084,7 +2449,7 @@ export async function functionalAnalysis(obj = {}) {
           basedOn: "Normal",
           next: "Normal",
           run: {
-            size: 18,
+            size: 20,
             bold: false,
             italics: false,
             color: black,

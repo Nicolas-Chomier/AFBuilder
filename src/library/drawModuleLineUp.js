@@ -13,20 +13,20 @@ function modiconTm3Obj(obj) {
   // Empty shape ATTENTION item order is important for drwing the line up
   let mt3 = {
     // Numerical
-    TM3DI16G: { qtty: 0, img: "IM1", type: "NI", cpty: 16, order: "mod1" },
-    TM3DI8G: { qtty: 0, img: "IM2", type: "NI", cpty: 8, order: "mod2" },
-    TM3DQ16TG: { qtty: 0, img: "IM1", type: "NO", cpty: 16, order: "mod3" },
-    TM3DQ8TG: { qtty: 0, img: "IM2", type: "NO", cpty: 8, order: "mod4" },
+    TM3DI16G: { qtty: 0, img: "IM1", type: "NI", cpty: 16, legend: "1" },
+    TM3DI8G: { qtty: 0, img: "IM2", type: "NI", cpty: 8, legend: "2" },
+    TM3DQ16TG: { qtty: 0, img: "IM1", type: "NO", cpty: 16, legend: "3" },
+    TM3DQ8TG: { qtty: 0, img: "IM2", type: "NO", cpty: 8, legend: "4" },
     // Analog
-    TM3AI8G: { qtty: 0, img: "IM3", type: "AI", cpty: 8, order: "mod5" },
-    TM3AQ4G: { qtty: 0, img: "IM4", type: "AO", cpty: 4, order: "mod6" },
+    TM3AI8G: { qtty: 0, img: "IM3", type: "AI", cpty: 8, legend: "5" },
+    TM3AQ4G: { qtty: 0, img: "IM4", type: "AO", cpty: 4, legend: "6" },
     // Temperature
-    TM3TI4G: { qtty: 0, img: "IM3", type: "TI", cpty: 4, order: "mod7" },
+    TM3TI4G: { qtty: 0, img: "IM3", type: "TI", cpty: 4, legend: "7" },
     // Slave
-    TM3BCCO: { qtty: 0, img: "IM5", type: false, cpty: 14, order: false },
+    TM3BCCO: { qtty: 0, img: "IM5", type: false, cpty: 14, legend: "8" },
     // Extension
-    TM3XTRA1: { qtty: 0, img: "IM6", type: false, cpty: 1, order: false },
-    TM3XREC1: { qtty: 0, img: "IM7", type: false, cpty: 1, order: false },
+    TM3XTRA1: { qtty: 0, img: "IM6", type: false, cpty: 1, legend: "A" },
+    TM3XREC1: { qtty: 0, img: "IM7", type: false, cpty: 1, legend: "B" },
   };
   let modNbs = 0; // Nbs of module
   let restOfModule = 0;
@@ -88,7 +88,7 @@ function modiconTm3LineUp(obj) {
   let l = [];
   for (const [key, item] of Object.entries(obj)) {
     for (let i = 0; i < item.qtty; i++) {
-      if (item.type) l.push([key, item.img, item.type, item.cpty]);
+      if (item.type) l.push([key, item.img, item.type, item.cpty, item.legend]);
     }
   }
   return l;
@@ -110,11 +110,12 @@ function split(arr) {
 }
 // Method which insert special "MODULE" to 2D list, according MODICON TM3 specificity
 function insert(mtx) {
-  const TM3BCCO = ["TM3BCCO", "IM5", false, false];
-  const TM3XTRA1 = ["TM3XTRA1", "IM6", false, false];
-  const TM3XREC1 = ["TM3XREC1", "IM7", false, false];
+  // Manual conception for module description list
+  const TM3BCCO = ["TM3BCCO", "IM5", false, false, "8"];
+  const TM3XTRA1 = ["TM3XTRA1", "IM6", false, false, "A"];
+  const TM3XREC1 = ["TM3XREC1", "IM7", false, false, "B"];
   let l = [];
-  // Add special module from matrix rows to main list
+  // Insert special module description list from matrix rows to main list
   for (const list of mtx) {
     if (list.length > 7) {
       list.splice(0, 0, TM3BCCO);
