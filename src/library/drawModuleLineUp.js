@@ -20,13 +20,14 @@ function modiconTm3Obj(obj) {
     // Analog
     TM3AI8G: { qtty: 0, img: "IM3", type: "AI", cpty: 8, legend: "5" },
     TM3AQ4G: { qtty: 0, img: "IM4", type: "AO", cpty: 4, legend: "6" },
+    TM3AM6G: { qtty: 0, img: "IM8", type: "Hybride", cpty: 6, legend: "H" },
     // Temperature
     TM3TI4G: { qtty: 0, img: "IM3", type: "TI", cpty: 4, legend: "7" },
     // Slave
-    TM3BCCO: { qtty: 0, img: "IM5", type: false, cpty: 14, legend: "8" },
+    TM3BCCO: { qtty: 0, img: "IM5", type: false, cpty: 14, legend: "0" },
     // Extension
-    TM3XTRA1: { qtty: 0, img: "IM6", type: false, cpty: 1, legend: "A" },
-    TM3XREC1: { qtty: 0, img: "IM7", type: false, cpty: 1, legend: "B" },
+    TM3XTRA1: { qtty: 0, img: "IM6", type: false, cpty: 1, legend: "8" },
+    TM3XREC1: { qtty: 0, img: "IM7", type: false, cpty: 1, legend: "9" },
   };
   let modNbs = 0; // Nbs of module
   let restOfModule = 0;
@@ -111,9 +112,9 @@ function split(arr) {
 // Method which insert special "MODULE" to 2D list, according MODICON TM3 specificity
 function insert(mtx) {
   // Manual conception for module description list
-  const TM3BCCO = ["TM3BCCO", "IM5", false, false, "8"];
-  const TM3XTRA1 = ["TM3XTRA1", "IM6", false, false, "A"];
-  const TM3XREC1 = ["TM3XREC1", "IM7", false, false, "B"];
+  const TM3BCCO = ["TM3BCCO", "IM5", false, false, "0"];
+  const TM3XTRA1 = ["TM3XTRA1", "IM6", false, false, "8"];
+  const TM3XREC1 = ["TM3XREC1", "IM7", false, false, "9"];
   let l = [];
   // Insert special module description list from matrix rows to main list
   for (const list of mtx) {

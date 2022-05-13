@@ -1,6 +1,6 @@
 export const screenSheet = {
   BRAND: "PROFACE",
-  PIC: "LT4000",
+  PIC: "LT4K",
   IO: {
     NI: 0,
     NO: 0,

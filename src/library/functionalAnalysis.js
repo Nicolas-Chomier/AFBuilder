@@ -20,20 +20,21 @@ import { generateFaultTable } from "./generateFaultTable";
 import { generateOverAllFaultTable } from "./generateOverAllFaultTable";
 import { calculIoList } from "./calculIoList";
 import { drawModuleLineUp } from "./drawModuleLineUp";
+import { getCompressorModuleList } from "./getCompressorModuleList";
 // Images
 import { CCOULEUR } from "../data/images/CCOULEUR.js";
 import { IRV } from "../data/images/IRV.js";
 import { IWV } from "../data/images/IWV.js";
 import { ALARMES } from "../data/images/ALARMES.js";
 
-//
+// Constante declaration
 const TITRE1 = "4B6FEA";
 const TITRE2 = "4BA9EA";
 const TITRE3 = "4BEAC3";
-const white = "FFFFFF";
-const darkGrey = "2F2F2F";
-const grey = "878787";
-const black = "000000";
+const WHITE = "FFFFFF";
+const DARKGREY = "2F2F2F";
+const GREY = "878787";
+const BLACK = "000000";
 
 export async function functionalAnalysis(obj = {}) {
   //* Variable declaration
@@ -84,7 +85,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: darkGrey,
+                color: DARKGREY,
               },
               columnSpan: 3,
             }),
@@ -101,7 +102,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -113,7 +114,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -125,7 +126,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
           ],
@@ -463,7 +464,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: darkGrey,
+                color: DARKGREY,
               },
               columnSpan: 4,
             }),
@@ -480,7 +481,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -492,7 +493,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -504,7 +505,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -516,7 +517,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
           ],
@@ -644,10 +645,6 @@ export async function functionalAnalysis(obj = {}) {
           text: `${obj.ScreenInfos.PLC.Ref}`,
           bold: true,
         }),
-        new TextRun({
-          text: "====================================================Image de l'automate choisi=======================================================",
-          break: 1,
-        }),
       ],
       style: "STD",
     }),
@@ -689,10 +686,111 @@ export async function functionalAnalysis(obj = {}) {
     }
     core.push(legendForLineUp, drawingForLineUp);
   }
+  // I/O table attribution and function
+  //! Créer une fonction qui retourne le tableau des IO (cf exemple)
+  core.push(
+    new Paragraph({
+      text: "TITRE A TROUVER",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Table({
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Tableau de fonction des entrées & sorties",
+                  style: "GAL1",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: DARKGREY,
+              },
+              columnSpan: 3,
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "N° de module / N° de voie",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: GREY,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Tag",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: GREY,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Fonction",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: GREY,
+              },
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "============",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "=============",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "===============",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    })
+  );
   // Module legend table
   core.push(
     new Paragraph({
-      text: "Légende et définition des modules",
+      text: "Légendes et définition des modules",
       heading: HeadingLevel.HEADING_3,
     }),
     new Table({
@@ -712,7 +810,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -724,7 +822,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -736,7 +834,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
           ],
@@ -942,7 +1040,35 @@ export async function functionalAnalysis(obj = {}) {
             new TableCell({
               children: [
                 new Paragraph({
-                  text: "MOD8",
+                  text: "MODH",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TM3AM6G",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "4 AI & 2 AO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MOD0",
                   style: "GAL3",
                 }),
               ],
@@ -970,7 +1096,7 @@ export async function functionalAnalysis(obj = {}) {
             new TableCell({
               children: [
                 new Paragraph({
-                  text: "MODA",
+                  text: "MOD8",
                   style: "GAL3",
                 }),
               ],
@@ -998,7 +1124,7 @@ export async function functionalAnalysis(obj = {}) {
             new TableCell({
               children: [
                 new Paragraph({
-                  text: "MODB",
+                  text: "MOD9",
                   style: "GAL3",
                 }),
               ],
@@ -1047,7 +1173,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: darkGrey,
+                color: DARKGREY,
               },
               columnSpan: 3,
             }),
@@ -1064,7 +1190,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -1076,7 +1202,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
             new TableCell({
@@ -1088,7 +1214,7 @@ export async function functionalAnalysis(obj = {}) {
               ],
               shading: {
                 type: ShadingType.SOLID,
-                color: grey,
+                color: GREY,
               },
             }),
           ],
@@ -1641,7 +1767,7 @@ export async function functionalAnalysis(obj = {}) {
                 ],
                 shading: {
                   type: ShadingType.SOLID,
-                  color: darkGrey,
+                  color: DARKGREY,
                 },
                 columnSpan: 4,
               }),
@@ -1658,7 +1784,7 @@ export async function functionalAnalysis(obj = {}) {
                 ],
                 shading: {
                   type: ShadingType.SOLID,
-                  color: grey,
+                  color: GREY,
                 },
               }),
               new TableCell({
@@ -1670,7 +1796,7 @@ export async function functionalAnalysis(obj = {}) {
                 ],
                 shading: {
                   type: ShadingType.SOLID,
-                  color: grey,
+                  color: GREY,
                 },
               }),
               new TableCell({
@@ -1682,7 +1808,7 @@ export async function functionalAnalysis(obj = {}) {
                 ],
                 shading: {
                   type: ShadingType.SOLID,
-                  color: grey,
+                  color: GREY,
                 },
               }),
               new TableCell({
@@ -1694,7 +1820,7 @@ export async function functionalAnalysis(obj = {}) {
                 ],
                 shading: {
                   type: ShadingType.SOLID,
-                  color: grey,
+                  color: GREY,
                 },
               }),
             ],
@@ -2157,7 +2283,77 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 9: "Définitions des objets"
+  //+ Chapter 9: "Open Air"
+  if (obj.ProjectInfos.OpenAir) {
+    const compressorModuleLineUpList = getCompressorModuleList(obj);
+    core.push(
+      new Paragraph({
+        text: "Open Air",
+        heading: HeadingLevel.HEADING_1,
+      }),
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Chez ",
+          }),
+          new TextRun({
+            text: "Dalkia Air Solution ",
+            bold: true,
+          }),
+          new TextRun({
+            text: "nous concevons et déployons notre propre système de séquenceur, ce chapitre détail et explique son architecture et son fonctionnement.",
+          }),
+        ],
+        style: "STD",
+      }),
+      new Paragraph({
+        text: "Conception et architecture interne",
+        heading: HeadingLevel.HEADING_2,
+      })
+    );
+    // Drawing the module line up
+    for (const item of compressorModuleLineUpList) {
+      const lineUp = item[1];
+      const title = item[0]["tag"];
+      const titleForLineUp = new Paragraph({
+        text: title,
+        heading: HeadingLevel.HEADING_3,
+      });
+      const legendForLineUp = new Paragraph({
+        children: [],
+        style: "STD",
+      });
+      const drawingForLineUp = new Paragraph({
+        children: [],
+      });
+      for (const item of lineUp) {
+        const leg = item[4];
+        const img = item[1];
+        // Dynamic import of image
+        const modImg = await import(`../data/images/${img}.js`);
+        // Get base64 str only
+        const moduleImgBase64 = modImg[img];
+        legendForLineUp.root.push(
+          new TextRun({
+            text: `MOD${leg}_ `,
+          })
+        );
+        drawingForLineUp.root.push(
+          new ImageRun({
+            data: Buffer.from(moduleImgBase64, "base64"),
+            transformation: {
+              width: 45,
+              height: 120,
+            },
+          })
+        );
+      }
+      // I/O table attribution and function
+      //! Créer une fonction qui retourne le tableau des IO (cf exemple)
+      core.push(titleForLineUp, legendForLineUp, drawingForLineUp);
+    }
+  }
+  //+ Chapter 10: "Définitions des objets"
   core.push(
     new Paragraph({
       text: "Définitions des objets",
@@ -2225,7 +2421,7 @@ export async function functionalAnalysis(obj = {}) {
       faultTable
     );
   }
-  //+ Chapter 10: "Gestion des alarmes"
+  //+ Chapter 11: "Gestion des alarmes"
   core.push(
     new Paragraph({
       text: "Gestion des alarmes",
@@ -2321,13 +2517,13 @@ export async function functionalAnalysis(obj = {}) {
         },
         listParagraph: {
           run: {
-            color: black,
+            color: BLACK,
           },
         },
       },
       paragraphStyles: [
         {
-          // Grey array title (line 1)
+          // GREY array title (line 1)
           id: "GAL1",
           name: "GAL1",
           basedOn: "Normal",
@@ -2336,7 +2532,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: true,
             italics: false,
-            color: white,
+            color: WHITE,
             font: "Calibri",
           },
           paragraph: {
@@ -2349,7 +2545,7 @@ export async function functionalAnalysis(obj = {}) {
           },
         },
         {
-          // Grey array line 2
+          // GREY array line 2
           id: "GAL2",
           name: "GAL2",
           basedOn: "Normal",
@@ -2358,7 +2554,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: true,
             italics: false,
-            color: black,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
@@ -2380,7 +2576,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: false,
             italics: false,
-            color: black,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
@@ -2404,7 +2600,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: true,
             italics: false,
-            color: black,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
@@ -2428,7 +2624,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: false,
             italics: false,
-            color: black,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
@@ -2452,7 +2648,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: false,
             italics: false,
-            color: black,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
