@@ -10,8 +10,6 @@ export const productSheet = {
   IO: { NI: 6, NO: 2, AI: 3, AO: 1, TI: 0 },
   TEXTS: {
     NI: [
-      "Espace disponible",
-      "Espace disponible",
       "Fonctionnement du compresseur",
       "Fonctionnement en charge",
       "Moteur en marche",
@@ -19,28 +17,18 @@ export const productSheet = {
       "Synthèse d'alarme",
       "locale / distance",
     ],
-    NO: [
-      "Espace disponible",
-      "Espace disponible",
-      "Espace disponible",
-      "Espace disponible",
-      "Espace disponible",
-      "Espace disponible",
-      "Activation de la charge à distance",
-      "Contrôle de la charge",
-    ],
+    NO: ["Activation de la charge à distance", "Contrôle de la charge"],
     AI: [
       "Mesure d'intensité du moteur",
       "Mesure de la pression de sortie du compresseur",
       "Mesure de la pression d'entrée' du compresseur",
-      "Espace disponible",
     ],
-    AO: ["Envoi de la consigne de pilotage", "Espace disponible"],
-    AIt: [""],
+    AO: ["Envoi de la consigne de pilotage"],
+    TI: [],
   },
   //* Warning : if managed by Function Block, fill array with "FB" !
   CMD: {
-    DI: [
+    NI: [
       [
         "Compresseur en marche",
         "Le compresseur est prêt",
@@ -74,7 +62,7 @@ export const productSheet = {
       [],
       [],
     ],
-    DO: [
+    NO: [
       [
         "Activation de la charge à distance",
         "Activation de la sortie numérique de l'automate",
@@ -118,7 +106,7 @@ export const productSheet = {
       ],
       [],
     ],
-    AIt: [[]],
+    TI: [[]],
   },
   FAULTS: {
     ARRAY: [

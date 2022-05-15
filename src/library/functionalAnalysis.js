@@ -21,6 +21,7 @@ import { generateOverAllFaultTable } from "./generateOverAllFaultTable";
 import { calculIoList } from "./calculIoList";
 import { drawModuleLineUp } from "./drawModuleLineUp";
 import { getCompressorModuleList } from "./getCompressorModuleList";
+import { generateFunctionTable } from "./generateFunctionTable";
 // Images
 import { CCOULEUR } from "../data/images/CCOULEUR.js";
 import { IRV } from "../data/images/IRV.js";
@@ -686,107 +687,6 @@ export async function functionalAnalysis(obj = {}) {
     }
     core.push(legendForLineUp, drawingForLineUp);
   }
-  // I/O table attribution and function
-  //! Créer une fonction qui retourne le tableau des IO (cf exemple)
-  core.push(
-    new Paragraph({
-      text: "TITRE A TROUVER",
-      heading: HeadingLevel.HEADING_3,
-    }),
-    new Table({
-      width: {
-        size: 100,
-        type: WidthType.PERCENTAGE,
-      },
-      rows: [
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Tableau de fonction des entrées & sorties",
-                  style: "GAL1",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: DARKGREY,
-              },
-              columnSpan: 3,
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "N° de module / N° de voie",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Tag",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Fonction",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "============",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "=============",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "===============",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-      ],
-    })
-  );
   // Module legend table
   core.push(
     new Paragraph({
@@ -1150,6 +1050,18 @@ export async function functionalAnalysis(obj = {}) {
       ],
     })
   );
+  // I/O table attribution and function
+  //! Créer une fonction qui retourne le tableau des IO (cf exemple)
+  const result = generateFunctionTable(obj, mainModuleLineUpList);
+  console.log("mainModuleLineUpList", mainModuleLineUpList);
+  core.push(
+    new Paragraph({
+      text: "Connexion des éléments aux modules d'entrées et sorties",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    result
+  );
+
   //+ Chapter 5: "Abréviations"
   core.push(
     new Paragraph({

@@ -9,27 +9,27 @@ export const productSheet = {
   OPENAIR: false,
   PROTOCOLE: false,
   FB: "FB001",
-  IO: { NI: 1, NO: 2, AI: 1, AO: 1, TI: 1 },
+  IO: { NI: 0, NO: 1, AI: 1, AO: 1, TI: 1 },
   TEXTS: {
-    DI: [""],
-    DO: [""],
+    NI: [],
+    NO: ["Transmetteur de pression 4-20mA n°2"],
     AI: ["Transmetteur de pression 4-20mA"],
-    AO: [""],
-    AIt: [""],
+    AO: ["Transmetteur de pression 4-20mA n°2"],
+    TI: ["Transmetteur de pression 4-20mA n°2"],
   },
   // Consigne: mettre "FB" si les commandes sont gérées par un bloc fonction.
   CMD: {
-    DI: [
+    NI: [
       [
         "Indicateur de niveau de pression",
         "Déclenchement lorsque le niveau de pression est atteint",
         "Activation d'un défaut",
       ],
     ],
-    DO: [[]],
+    NO: [[]],
     AI: [["FB"]],
     AO: [[]],
-    AIt: [[]],
+    TI: [[]],
   },
   FAULTS: {
     ARRAY: [["FB"]],

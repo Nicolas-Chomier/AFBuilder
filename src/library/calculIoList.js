@@ -7,8 +7,12 @@ export function calculIoList(obj) {
   const modelBase = { NI: 0, NO: 0, AI: 0, AO: 0, TI: 0 };
   // Add all non openair elem IOList to modelBase
   for (const item of elem) {
-    for (const [key, value] of Object.entries(item.Infos.IO)) {
-      modelBase[key] += value;
+    // OpenAir element designation
+    const openAirOrNot = item.Infos.OPENAIR;
+    if (openAirOrNot === false) {
+      for (const [key, value] of Object.entries(item.Infos.IO)) {
+        modelBase[key] += value;
+      }
     }
   }
   // Multiply each modelBase key whith coef

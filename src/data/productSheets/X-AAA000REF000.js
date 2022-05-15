@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "",
-  INFO: "",
+  NAME: "", //! Mandatory
+  INFO: "", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -12,19 +12,19 @@ export const productSheet = {
   FB: false, //* If true => "STRING" ex: "FB001"
   IO: { NI: 0, NO: 0, AI: 0, AO: 0, TI: 0 },
   TEXTS: {
-    DI: [""],
-    DO: [""],
-    AI: [""],
-    AO: [""],
-    AIt: [""],
+    NI: [],
+    NO: [],
+    AI: [],
+    AO: [],
+    TI: [],
   },
   //* Warning : if managed by Function Block, fill array with "FB" !
   CMD: {
-    DI: [[]],
-    DO: [[]],
+    NI: [[]],
+    NO: [[]],
     AI: [[]],
     AO: [[]],
-    AIt: [[]],
+    TI: [[]],
   },
   FAULTS: {
     ARRAY: [[]],

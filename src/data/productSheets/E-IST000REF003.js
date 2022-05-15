@@ -11,14 +11,14 @@ export const productSheet = {
   IO: { NI: 2, NO: 0, AI: 1, AO: 0, TI: 0 },
   // a voir...
   Text: {
-    DI: "Envoi d'un signal numérique",
-    DO: "",
+    NI: "Envoi d'un signal numérique",
+    NO: "",
     AI: "Transmetteur de pression 4-20mA",
     AO: "",
-    AIt: "",
+    TI: "",
   },
   AF: {
-    DI: [
+    NI: [
       [
         "Indicateur de niveau de pression",
         "Déclenchement lorsque le niveau de pression 1 est atteint",
@@ -30,7 +30,7 @@ export const productSheet = {
         "Activation d'un défaut",
       ],
     ],
-    DO: [[]],
+    NO: [[]],
     AI: [
       [
         "Géré par bloc fonctionnel",
@@ -39,7 +39,7 @@ export const productSheet = {
       ],
     ],
     AO: [[]],
-    AIt: [[]],
+    TI: [[]],
   },
   FAULTS: [
     ["def_[TAG]_1", "PMI", "Entrée PLC activée après 3 secondes"],
