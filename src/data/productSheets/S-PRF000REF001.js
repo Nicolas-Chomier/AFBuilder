@@ -2,11 +2,11 @@ export const screenSheet = {
   BRAND: "PROFACE",
   PIC: "LT4K",
   IO: {
-    NI: 0,
-    NO: 0,
-    AI: 0,
-    AO: 0,
-    TI: 0,
+    NI: 12,
+    NO: 6,
+    AI: 2,
+    AO: 2,
+    TI: 2,
   },
   CIO: "Modicon TM3 (Schneider Electric)",
   PLC: {

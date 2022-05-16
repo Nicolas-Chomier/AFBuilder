@@ -22,6 +22,8 @@ import { calculIoList } from "./calculIoList";
 import { drawModuleLineUp } from "./drawModuleLineUp";
 import { getCompressorModuleList } from "./getCompressorModuleList";
 import { generateFunctionTable } from "./generateFunctionTable";
+import { getLegendTable } from "./getLegendTable";
+import { generateOpenAirFunctionTable } from "./generateOpenAirFunctionTable";
 // Images
 import { CCOULEUR } from "../data/images/CCOULEUR.js";
 import { IRV } from "../data/images/IRV.js";
@@ -36,12 +38,17 @@ const WHITE = "FFFFFF";
 const DARKGREY = "2F2F2F";
 const GREY = "878787";
 const BLACK = "000000";
+const SOFTBLUE = "C5CAE9";
 
 export async function functionalAnalysis(obj = {}) {
   //* Variable declaration
   const core = [];
   const mainInputOutputList = calculIoList(obj); // {NI:xx,NO:yy, ...}
   const mainModuleLineUpList = drawModuleLineUp(mainInputOutputList);
+  const usedModulesLegendTable = getLegendTable(obj.ScreenInfos);
+  // Open Air
+  const compressorModuleLineUpList = getCompressorModuleList(obj);
+  // Function Bloc
   let FB001 = false;
   //+ Chapter 1: "Présentation du document"
   core.push(
@@ -247,7 +254,384 @@ export async function functionalAnalysis(obj = {}) {
       ],
     })
   );
-  //+ Chapter 2: "Architecture de l'installation"
+  //+ Chapter 2: "Abréviations"
+  core.push(
+    new Paragraph({
+      text: "Informations connexes",
+      heading: HeadingLevel.HEADING_1,
+    }),
+    // Abbréviations table
+    new Paragraph({
+      text: "Abréviations",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Table({
+      width: {
+        size: 100,
+        type: WidthType.PERCENTAGE,
+      },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Abréviations",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: SOFTBLUE,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Nom complet",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: SOFTBLUE,
+              },
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Description",
+                  style: "GAL2",
+                }),
+              ],
+              shading: {
+                type: ShadingType.SOLID,
+                color: SOFTBLUE,
+              },
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "ATMP",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Atmospheric Pressure",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "1 Bar",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "MES",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Message",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Message / information",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TMA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Technical Major Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Défaut technique entrainant l'arrêt de l'installation",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TMI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Technical Minor Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Défaut technique sans arrêt de l'installation",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "PMA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Process Major Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Dépassement de seuil dans le processus avec un impact sur la qualité du produit",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "PMI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Process Minor Fault",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Dépassement de seuil dans le processus sans impact sur la qualité du produit",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "DI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Digital Input",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Input 1 or 0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "DO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Digital Output",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Output 1 or 0",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "AI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Analog Input",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Entrées analogiques 4-20mA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "TI",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Temperature Input",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Entrée spéciales (PT100 + Thermocouple)",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+        new TableRow({
+          children: [
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "AO",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Analog Output",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+            new TableCell({
+              children: [
+                new Paragraph({
+                  text: "Sortie analogique 4-20mA",
+                  style: "GAL3",
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    })
+  );
+  if (mainModuleLineUpList.length !== 0) {
+    core.push(
+      new Paragraph({
+        text: `Description des modules: "${obj.ScreenInfos.CIO}"`,
+        heading: HeadingLevel.HEADING_2,
+      }),
+      usedModulesLegendTable
+    );
+  }
+  //+ Chapter 3: "Architecture de l'installation"
   core.push(
     new Paragraph({
       text: "Architecture de l'installation",
@@ -375,7 +759,7 @@ export async function functionalAnalysis(obj = {}) {
       return result;
     }
   });
-  //+ Chapter 3: "Architecture réseaux"
+  //+ Chapter 4: "Architecture réseaux"
   core.push(
     new Paragraph({
       text: "Architecture réseaux",
@@ -386,7 +770,7 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 4: "Configurations et informations"
+  //+ Chapter 5: "Configurations et informations"
   core.push(
     new Paragraph({
       text: "Configurations et informations",
@@ -648,800 +1032,56 @@ export async function functionalAnalysis(obj = {}) {
         }),
       ],
       style: "STD",
-    }),
-    new Paragraph({
-      text: `Agencement modules I/O, ${obj.ScreenInfos.BRAND}`,
-      heading: HeadingLevel.HEADING_3,
     })
   );
-  // Drawing the module line up
-  for (const table of mainModuleLineUpList) {
-    const legendForLineUp = new Paragraph({
-      children: [],
-      style: "STD",
-    });
-    const drawingForLineUp = new Paragraph({
-      children: [],
-    });
-    for (const item of table) {
-      const leg = item[4];
-      const img = item[1];
-      // Dynamic import of image
-      const modImg = await import(`../data/images/${img}.js`);
-      // Get base64 str only
-      const moduleImgBase64 = modImg[img];
-      legendForLineUp.root.push(
-        new TextRun({
-          text: `MOD${leg}_ `,
-        })
-      );
-      drawingForLineUp.root.push(
-        new ImageRun({
-          data: Buffer.from(moduleImgBase64, "base64"),
-          transformation: {
-            width: 45,
-            height: 120,
-          },
-        })
-      );
+  if (mainModuleLineUpList.length !== 0) {
+    // Drawing the module line up
+    for (const table of mainModuleLineUpList) {
+      const legendForLineUp = new Paragraph({
+        children: [],
+        style: "STD",
+      });
+      const drawingForLineUp = new Paragraph({
+        children: [],
+      });
+      for (const item of table) {
+        const leg = item[4];
+        const img = item[1];
+        // Dynamic import of image
+        const modImg = await import(`../data/images/${img}.js`);
+        // Get base64 str only
+        const moduleImgBase64 = modImg[img];
+        legendForLineUp.root.push(
+          new TextRun({
+            text: `MOD${leg}_ `,
+          })
+        );
+        drawingForLineUp.root.push(
+          new ImageRun({
+            data: Buffer.from(moduleImgBase64, "base64"),
+            transformation: {
+              width: 45,
+              height: 120,
+            },
+          })
+        );
+      }
+      const paragraphTitle = new Paragraph({
+        text: `Agencement modules I/O, ${obj.ScreenInfos.BRAND}`,
+        heading: HeadingLevel.HEADING_3,
+      });
+      core.push(paragraphTitle, legendForLineUp, drawingForLineUp);
     }
-    core.push(legendForLineUp, drawingForLineUp);
+    // I/O table attribution and function
+    const result = generateFunctionTable(obj, mainModuleLineUpList);
+    core.push(
+      new Paragraph({
+        text: "Connexion des éléments aux modules d'entrées et sorties",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      result
+    );
   }
-  // Module legend table
-  core.push(
-    new Paragraph({
-      text: "Légendes et définition des modules",
-      heading: HeadingLevel.HEADING_3,
-    }),
-    new Table({
-      width: {
-        size: 100,
-        type: WidthType.PERCENTAGE,
-      },
-      rows: [
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Légende",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Référence",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Définition",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD1",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3DI16G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "16 NI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD2",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3DI8G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "8 NI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD3",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3DQ16TG",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "16 NO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD4",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3DQ8TG",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "8 NO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD5",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3AI8G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "8 AI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD6",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3AQ4G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "4 AO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD7",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3TI4G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "4 TI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MODH",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3AM6G",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "4 AI & 2 AO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD0",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3BCCO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "CANOpen Slave",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD8",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3XTRA1",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Module Extension =>",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MOD9",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TM3XREC1",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Module Extension <=",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-      ],
-    })
-  );
-  // I/O table attribution and function
-  //! Créer une fonction qui retourne le tableau des IO (cf exemple)
-  const result = generateFunctionTable(obj, mainModuleLineUpList);
-  console.log("mainModuleLineUpList", mainModuleLineUpList);
-  core.push(
-    new Paragraph({
-      text: "Connexion des éléments aux modules d'entrées et sorties",
-      heading: HeadingLevel.HEADING_3,
-    }),
-    result
-  );
-
-  //+ Chapter 5: "Abréviations"
-  core.push(
-    new Paragraph({
-      text: "Abréviations",
-      heading: HeadingLevel.HEADING_1,
-    }),
-    new Table({
-      width: {
-        size: 100,
-        type: WidthType.PERCENTAGE,
-      },
-      rows: [
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Tableau des abréviations",
-                  style: "GAL1",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: DARKGREY,
-              },
-              columnSpan: 3,
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Abréviations",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Nom complet",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Déscription",
-                  style: "GAL2",
-                }),
-              ],
-              shading: {
-                type: ShadingType.SOLID,
-                color: GREY,
-              },
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "ATMP",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Atmospheric Pressure",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "1 Bar",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "MES",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Message",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Message / information",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TMA",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Technical Major Fault",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Défaut technique entrainant l'arrêt de l'installation",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "TMI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Technical Minor Fault",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Défaut technique sans arrêt de l'installation",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "PMA",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Process Major Fault",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Dépassement de seuil dans le processus avec un impact sur la qualité du produit",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "PMI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Process Minor Fault",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Dépassement de seuil dans le processus sans impact sur la qualité du produit",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "DI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Digital Input",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Input 1 or 0",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "DO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Digital Output",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Output 1 or 0",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "AI",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Analog Input",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Input 4-20mA (for example)",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "AI(T°)",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Analog Input (T°)",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Special Input for PT100 / 1000 or thermocouple",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-        new TableRow({
-          children: [
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "AO",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Analog Output",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-            new TableCell({
-              children: [
-                new Paragraph({
-                  text: "Output 4-20mA (for example)",
-                  style: "GAL3",
-                }),
-              ],
-            }),
-          ],
-        }),
-      ],
-    })
-  );
   //+ Chapter 6: "Code couleurs"
   core.push(
     new Paragraph({
@@ -2196,8 +1836,8 @@ export async function functionalAnalysis(obj = {}) {
     })
   );
   //+ Chapter 9: "Open Air"
-  if (obj.ProjectInfos.OpenAir) {
-    const compressorModuleLineUpList = getCompressorModuleList(obj);
+  if (obj.ProjectInfos.OpenAir && compressorModuleLineUpList.length !== 0) {
+    const result = generateOpenAirFunctionTable(obj.ElementInfos);
     core.push(
       new Paragraph({
         text: "Open Air",
@@ -2228,7 +1868,7 @@ export async function functionalAnalysis(obj = {}) {
       const lineUp = item[1];
       const title = item[0]["tag"];
       const titleForLineUp = new Paragraph({
-        text: title,
+        text: `Agencement modules I/O, compresseur: ${title}`,
         heading: HeadingLevel.HEADING_3,
       });
       const legendForLineUp = new Paragraph({
@@ -2264,6 +1904,14 @@ export async function functionalAnalysis(obj = {}) {
       //! Créer une fonction qui retourne le tableau des IO (cf exemple)
       core.push(titleForLineUp, legendForLineUp, drawingForLineUp);
     }
+    // I/O table attribution and function for open air
+    core.push(
+      new Paragraph({
+        text: "Connexion des éléments aux modules d'entrées et sorties",
+        heading: HeadingLevel.HEADING_3,
+      }),
+      result
+    );
   }
   //+ Chapter 10: "Définitions des objets"
   core.push(
@@ -2594,8 +2242,8 @@ export async function functionalAnalysis(obj = {}) {
     sections: [{ children: core }],
   });
   //* Print document
-  Packer.toBlob(doc).then((blob) => {
+  /*  Packer.toBlob(doc).then((blob) => {
     saveAs(blob, "Draft.docx");
-  });
+  }); */
   return false;
 }

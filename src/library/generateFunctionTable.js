@@ -12,7 +12,6 @@ const COLORB = "FCE46B";
 //
 export function generateFunctionTable(obj, arr) {
   const content = sortElementByType(obj);
-  console.log("content", content);
   // Table creation whith first row title
   const table = new Table({
     width: {
@@ -124,13 +123,11 @@ function sortElementByType(obj) {
 
 //* Fill object named shape with tag and element text table
 function sortReservedSlotsByType(slot, shape) {
-  // The base
-  //const shape = { NI: [], NO: [], AI: [], AO: [], TI: [] }; //! this have to match whith productSheet content
   const reservedSlotsText = "Emplacement réservé";
-  const reservecSlotsTag = "...";
+  const reservecSlotsTag = "";
   for (const [key, value] of Object.entries(slot)) {
     for (let i = 0; i < value; i++) {
-      shape[key].push([reservecSlotsTag, reservedSlotsText]);
+      shape[key].push([reservedSlotsText, reservecSlotsTag]);
     }
   }
   return shape;

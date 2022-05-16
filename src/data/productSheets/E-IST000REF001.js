@@ -9,13 +9,13 @@ export const productSheet = {
   OPENAIR: false,
   PROTOCOLE: false,
   FB: "FB001",
-  IO: { NI: 0, NO: 1, AI: 1, AO: 1, TI: 1 },
+  IO: { NI: 0, NO: 0, AI: 1, AO: 0, TI: 0 },
   TEXTS: {
     NI: [],
-    NO: ["Transmetteur de pression 4-20mA n°2"],
+    NO: [],
     AI: ["Transmetteur de pression 4-20mA"],
-    AO: ["Transmetteur de pression 4-20mA n°2"],
-    TI: ["Transmetteur de pression 4-20mA n°2"],
+    AO: [],
+    TI: [],
   },
   // Consigne: mettre "FB" si les commandes sont gérées par un bloc fonction.
   CMD: {
