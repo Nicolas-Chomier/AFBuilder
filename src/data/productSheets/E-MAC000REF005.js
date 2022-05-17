@@ -25,6 +25,15 @@ export const productSheet = {
     ],
     AO: ["Envoi de la consigne de pilotage"],
     TI: [],
+    //! En attendant une meilleur solution pour gerer les cartes hybrides sur le tableau des fonctions sur les compresseur Open Air.
+    //+ Specifique OPENAIR !!
+    Hybride: [
+      "Mesure d'intensité du moteur",
+      "Mesure de la pression de sortie du compresseur",
+      "Mesure de la pression d'entrée' du compresseur",
+      "",
+      "Envoi de la consigne de pilotage",
+    ],
   },
   //* Warning : if managed by Function Block, fill array with "FB" !
   CMD: {

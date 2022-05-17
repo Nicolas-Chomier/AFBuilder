@@ -14,15 +14,14 @@ export function getCompressorModuleList(obj) {
   // MODICON TM3 line up module attribution for : Variable speed centrifugal compressor
   const vscc = [TM3BCCO, TM3DI8G, TM3DQ8TG, TM3AM6G];
   // Build the compressor mega list
-  for (const item of obj.ElementInfos) {
-    if (item.Infos.OPENAIR) {
-      if (item.Infos.IO.AI === 3) {
-        l.push([item, vscc]);
-      } else if (item.Infos.IO.AI === 2) {
-        l.push([item, vsc]);
-      } else {
-        l.push([item, fsc]);
-      }
+  const compressorList = obj.ElementInfos.filter((e) => e.Infos.OPENAIR);
+  for (const item of compressorList) {
+    if (item.Infos.IO.AI === 3) {
+      l.push([item, vscc]);
+    } else if (item.Infos.IO.AI === 2) {
+      l.push([item, vsc]);
+    } else {
+      l.push([item, fsc]);
     }
   }
   return l;

@@ -1837,7 +1837,6 @@ export async function functionalAnalysis(obj = {}) {
   );
   //+ Chapter 9: "Open Air"
   if (obj.ProjectInfos.OpenAir && compressorModuleLineUpList.length !== 0) {
-    const result = generateOpenAirFunctionTable(obj.ElementInfos);
     core.push(
       new Paragraph({
         text: "Open Air",
@@ -1902,16 +1901,20 @@ export async function functionalAnalysis(obj = {}) {
       }
       // I/O table attribution and function
       //! Créer une fonction qui retourne le tableau des IO (cf exemple)
-      core.push(titleForLineUp, legendForLineUp, drawingForLineUp);
-    }
-    // I/O table attribution and function for open air
-    core.push(
-      new Paragraph({
+      const textTableTitle = new Paragraph({
         text: "Connexion des éléments aux modules d'entrées et sorties",
         heading: HeadingLevel.HEADING_3,
-      }),
-      result
-    );
+      });
+      const result = generateOpenAirFunctionTable(item);
+      core.push(
+        titleForLineUp,
+        legendForLineUp,
+        drawingForLineUp,
+        textTableTitle,
+        result
+      );
+    }
+    // I/O table attribution and function for open air
   }
   //+ Chapter 10: "Définitions des objets"
   core.push(
@@ -2242,8 +2245,8 @@ export async function functionalAnalysis(obj = {}) {
     sections: [{ children: core }],
   });
   //* Print document
-  /*  Packer.toBlob(doc).then((blob) => {
+  Packer.toBlob(doc).then((blob) => {
     saveAs(blob, "Draft.docx");
-  }); */
+  });
   return false;
 }

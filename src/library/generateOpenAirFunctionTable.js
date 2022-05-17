@@ -12,7 +12,11 @@ const COLORB = "FCE46B";
 //
 //! A terminer
 export function generateOpenAirFunctionTable(arr) {
-  const compressorList = arr.filter((e) => e.Infos.OPENAIR);
+  const lineUp = arr[1].filter((e) => e[2]);
+  console.log("lineUp", lineUp);
+  //const textTable = arr[0].Infos.TEXTS.NI;
+  const tag = arr[0].tag;
+  //const size = 8;
   const table = new Table({
     width: {
       size: 100,
@@ -24,7 +28,7 @@ export function generateOpenAirFunctionTable(arr) {
           new TableCell({
             children: [
               new Paragraph({
-                text: "I/O modules, ligne principale",
+                text: `Description modules compresseur: ${tag}`,
                 style: "GAL1",
               }),
             ],
@@ -38,52 +42,52 @@ export function generateOpenAirFunctionTable(arr) {
       }),
     ],
   });
-  for (const item of compressorList) {
-    const row = new TableRow({
+  for (const item of lineUp) {
+    const moduleRef = item[0];
+    const type = item[2];
+    const size = item[3];
+    const textTable = arr[0].Infos.TEXTS[type];
+    const firstRow = new TableRow({
       children: [
         new TableCell({
           children: [
             new Paragraph({
-              text: "I/O modules, ligne principale",
-              style: "GAL1",
+              text: moduleRef,
+              style: "GAL2",
             }),
           ],
           shading: {
             type: ShadingType.SOLID,
-            color: COLORA,
+            color: COLORB,
           },
-          columnSpan: 3,
-        }),
-        new TableCell({
-          children: [
-            new Paragraph({
-              text: "I/O modules, ligne principale",
-              style: "GAL1",
-            }),
-          ],
-          shading: {
-            type: ShadingType.SOLID,
-            color: COLORA,
-          },
-          columnSpan: 3,
-        }),
-        new TableCell({
-          children: [
-            new Paragraph({
-              text: "I/O modules, ligne principale",
-              style: "GAL1",
-            }),
-          ],
-          shading: {
-            type: ShadingType.SOLID,
-            color: COLORA,
-          },
-          columnSpan: 3,
         }),
       ],
     });
+    table.root.push(firstRow);
+    //
+    for (let i = 0; i < size; i++) {
+      const row = new TableRow({
+        children: [
+          new TableCell({
+            children: [
+              new Paragraph({
+                text: `Voie n°${i}`,
+                style: "GAL3",
+              }),
+            ],
+          }),
+          new TableCell({
+            children: [
+              new Paragraph({
+                text: textTable[i],
+                style: "GAL3",
+              }),
+            ],
+          }),
+        ],
+      });
+      table.root.push(row);
+    }
   }
-  console.log("compressorList", compressorList);
-
-  return false;
+  return table;
 }
