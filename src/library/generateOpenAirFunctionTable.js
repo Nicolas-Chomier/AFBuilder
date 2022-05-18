@@ -79,7 +79,7 @@ export function generateOpenAirFunctionTable(arr) {
           new TableCell({
             children: [
               new Paragraph({
-                text: textTable[i],
+                text: textTable[i] === undefined ? "Libre" : textTable[i],
                 style: "GAL3",
               }),
             ],

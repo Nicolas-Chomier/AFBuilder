@@ -259,6 +259,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Informations connexes",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     // Abbréviations table
     new Paragraph({
@@ -636,6 +637,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Architecture de l'installation",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "IHM, CPU & CANOpen",
@@ -775,6 +777,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Configurations et informations",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "L'ensemble PLC & IHM est configuré comme suit:",
@@ -1087,6 +1090,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Code couleurs",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "Résumé / vue IHM",
@@ -1211,6 +1215,7 @@ export async function functionalAnalysis(obj = {}) {
       new Paragraph({
         text: "Description du bloc de fonctions FB001",
         heading: HeadingLevel.HEADING_1,
+        pageBreakBefore: true,
       }),
       new Paragraph({
         text: "Description générale",
@@ -1829,6 +1834,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Fonctionnement de l'installation",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "==============================================================================================================================================================================",
@@ -1841,6 +1847,7 @@ export async function functionalAnalysis(obj = {}) {
       new Paragraph({
         text: "Open Air",
         heading: HeadingLevel.HEADING_1,
+        pageBreakBefore: true,
       }),
       new Paragraph({
         children: [
@@ -1921,6 +1928,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Définitions des objets",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     })
   );
   for (const elem of obj.ElementInfos) {
@@ -1989,6 +1997,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       text: "Gestion des alarmes",
       heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "Introduction",
@@ -2048,7 +2057,7 @@ export async function functionalAnalysis(obj = {}) {
         },
         heading2: {
           run: {
-            size: 26,
+            size: 28,
             bold: false,
             italics: false,
             color: TITRE2,

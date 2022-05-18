@@ -31,7 +31,7 @@ export const productSheet = {
       "Mesure d'intensité du moteur",
       "Mesure de la pression de sortie du compresseur",
       "Mesure de la pression d'entrée' du compresseur",
-      "",
+      "Libre", //! A adapter aussi
       "Envoi de la consigne de pilotage",
     ],
   },
