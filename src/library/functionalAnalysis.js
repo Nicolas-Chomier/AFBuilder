@@ -24,6 +24,7 @@ import { getCompressorModuleList } from "./getCompressorModuleList";
 import { generateFunctionTable } from "./generateFunctionTable";
 import { getLegendTable } from "./getLegendTable";
 import { generateOpenAirFunctionTable } from "./generateOpenAirFunctionTable";
+import { buildPlcNativeIOListTable } from "./buildPlcNativeIOListTable";
 // Images
 import { CCOULEUR } from "../data/images/CCOULEUR.js";
 import { IRV } from "../data/images/IRV.js";
@@ -39,15 +40,34 @@ const DARKGREY = "2F2F2F";
 const GREY = "878787";
 const BLACK = "000000";
 const SOFTBLUE = "C5CAE9";
-
+//! en chantier !
 export async function functionalAnalysis(obj = {}) {
-  //* Variable declaration
+  // Basical variable declaration
   const core = [];
+  const elementList = obj.ElementInfos;
+  const reservedSlots = obj.ProjectInfos.reservedSlots;
+  const screenInfos = obj.ScreenInfos;
+  // Image for choosen HMI
+  const hmiImgObj = await import(`../data/images/${obj.ScreenInfos.PIC}.js`);
+  const hmiImg = hmiImgObj[obj.ScreenInfos.PIC];
+  ////! en chantier !
   const mainInputOutputList = calculIoList(obj); // {NI:xx,NO:yy, ...}
-  const mainModuleLineUpList = drawModuleLineUp(mainInputOutputList);
-  const usedModulesLegendTable = getLegendTable(obj.ScreenInfos);
+  const moduleSetUp = drawModuleLineUp(mainInputOutputList);
+  const usedModulesLegendTable = getLegendTable(screenInfos);
   // Open Air
   const compressorModuleLineUpList = getCompressorModuleList(obj);
+  // PLC with native I/O
+  //! en chantier !
+  const hmiSetUp = buildPlcNativeIOListTable(obj);
+  // Get function table for IHM and Module (if exist)
+  const result = generateFunctionTable(
+    reservedSlots,
+    hmiSetUp,
+    moduleSetUp,
+    elementList
+  );
+  const functionTableForIhm = result[0];
+  const functionTableForModules = result[1];
   // Function Bloc
   let FB001 = false;
   //+ Chapter 1: "Présentation du document"
@@ -623,7 +643,7 @@ export async function functionalAnalysis(obj = {}) {
       ],
     })
   );
-  if (mainModuleLineUpList.length !== 0) {
+  if (moduleSetUp.length !== 0) {
     core.push(
       new Paragraph({
         text: `Description des modules: "${obj.ScreenInfos.CIO}"`,
@@ -772,16 +792,12 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 5: "Configurations et informations"
+  //+ Chapter 5: "Configuration et information logiciel"
   core.push(
     new Paragraph({
-      text: "Configurations et informations",
+      text: "Configuration et information logiciel",
       heading: HeadingLevel.HEADING_1,
       pageBreakBefore: true,
-    }),
-    new Paragraph({
-      text: "L'ensemble PLC & IHM est configuré comme suit:",
-      style: "STD",
     }),
     new Paragraph({
       text: "Information logiciel ",
@@ -790,7 +806,7 @@ export async function functionalAnalysis(obj = {}) {
     new Paragraph({
       children: [
         new TextRun({
-          text: "La programmation du PLC est effectuée avec le logiciel: ",
+          text: "La programmation du API est effectuée avec le logiciel: ",
         }),
         new TextRun({
           text: "GP-Pro EX 4.09 SP1",
@@ -814,6 +830,22 @@ export async function functionalAnalysis(obj = {}) {
         }),
       ],
       style: "STD",
+    }),
+    new Paragraph({
+      text: "Configuration logiciel ",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      text: "NONE",
+      style: "STD",
+    })
+  );
+  //+ Chapter 6: "Configuration et information IHM"
+  core.push(
+    new Paragraph({
+      text: "Configuration et information IHM",
+      heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
     }),
     new Paragraph({
       text: "Information IHM",
@@ -1021,13 +1053,45 @@ export async function functionalAnalysis(obj = {}) {
       ],
     }),
     new Paragraph({
-      text: "Information PLC",
+      text: "Configuration IHM",
+      heading: HeadingLevel.HEADING_2,
+    }),
+    new Paragraph({
+      text: "Image de l'IHM choisi",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    new Paragraph({
+      children: [
+        new ImageRun({
+          data: Buffer.from(hmiImg, "base64"),
+          transformation: {
+            width: 320,
+            height: 240,
+          },
+        }),
+      ],
+    }),
+    new Paragraph({
+      text: "Connexion des éléments aux entrées et sorties natives de l'IHM",
+      heading: HeadingLevel.HEADING_3,
+    }),
+    functionTableForIhm
+  );
+  //+ Chapter 7: "Configuration et information API"
+  core.push(
+    new Paragraph({
+      text: "Configuration et information API",
+      heading: HeadingLevel.HEADING_1,
+      pageBreakBefore: true,
+    }),
+    new Paragraph({
+      text: "Information API",
       heading: HeadingLevel.HEADING_2,
     }),
     new Paragraph({
       children: [
         new TextRun({
-          text: `PLC ${obj.ScreenInfos.PLC.Denomination}, référence: `,
+          text: `API ${obj.ScreenInfos.PLC.Denomination}, référence: `,
         }),
         new TextRun({
           text: `${obj.ScreenInfos.PLC.Ref}`,
@@ -1035,11 +1099,15 @@ export async function functionalAnalysis(obj = {}) {
         }),
       ],
       style: "STD",
+    }),
+    new Paragraph({
+      text: "Configuration API",
+      heading: HeadingLevel.HEADING_2,
     })
   );
-  if (mainModuleLineUpList.length !== 0) {
+  if (moduleSetUp.length !== 0) {
     // Drawing the module line up
-    for (const table of mainModuleLineUpList) {
+    for (const table of moduleSetUp) {
       const legendForLineUp = new Paragraph({
         children: [],
         style: "STD",
@@ -1073,19 +1141,25 @@ export async function functionalAnalysis(obj = {}) {
         text: `Agencement modules I/O, ${obj.ScreenInfos.BRAND}`,
         heading: HeadingLevel.HEADING_3,
       });
-      core.push(paragraphTitle, legendForLineUp, drawingForLineUp);
-    }
-    // I/O table attribution and function
-    const result = generateFunctionTable(obj, mainModuleLineUpList);
-    core.push(
-      new Paragraph({
+      const moduleTitle = new Paragraph({
         text: "Connexion des éléments aux modules d'entrées et sorties",
         heading: HeadingLevel.HEADING_3,
-      }),
-      result
-    );
+      });
+      core.push(
+        paragraphTitle,
+        legendForLineUp,
+        drawingForLineUp,
+        moduleTitle,
+        functionTableForModules
+      );
+    }
+  } else {
+    new Paragraph({
+      text: "Aucun module d'entrées et sorties utilisés dans cette installation.",
+      style: "STD",
+    });
   }
-  //+ Chapter 6: "Code couleurs"
+  //+ Chapter 8: "Code couleurs"
   core.push(
     new Paragraph({
       text: "Code couleurs",
@@ -1101,7 +1175,7 @@ export async function functionalAnalysis(obj = {}) {
         new ImageRun({
           data: Buffer.from(CCOULEUR, "base64"),
           transformation: {
-            width: 450,
+            width: 400,
             height: 310,
           },
         }),
@@ -1203,7 +1277,7 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 7: "Bloc de fonctions"
+  //+ Chapter 9: "Bloc de fonctions"
   for (const elem of obj.ElementInfos) {
     if (elem.Infos.FB === "FB001") {
       FB001 = true;
@@ -1829,7 +1903,7 @@ export async function functionalAnalysis(obj = {}) {
       })
     );
   }
-  //+ Chapter 8: "Fonctionnement de l'installation"
+  //+ Chapter 10: "Fonctionnement de l'installation"
   core.push(
     new Paragraph({
       text: "Fonctionnement de l'installation",
@@ -1841,7 +1915,7 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     })
   );
-  //+ Chapter 9: "Open Air"
+  //+ Chapter 11: "Open Air"
   if (obj.ProjectInfos.OpenAir && compressorModuleLineUpList.length !== 0) {
     core.push(
       new Paragraph({
@@ -1923,7 +1997,7 @@ export async function functionalAnalysis(obj = {}) {
     }
     // I/O table attribution and function for open air
   }
-  //+ Chapter 10: "Définitions des objets"
+  //+ Chapter 12: "Définitions des objets"
   core.push(
     new Paragraph({
       text: "Définitions des objets",
@@ -1992,7 +2066,7 @@ export async function functionalAnalysis(obj = {}) {
       faultTable
     );
   }
-  //+ Chapter 11: "Gestion des alarmes"
+  //+ Chapter 13: "Gestion des alarmes"
   core.push(
     new Paragraph({
       text: "Gestion des alarmes",
@@ -2066,8 +2140,8 @@ export async function functionalAnalysis(obj = {}) {
           },
           paragraph: {
             spacing: {
-              before: 100,
-              after: 100,
+              before: 180,
+              after: 20,
             },
           },
         },
@@ -2082,8 +2156,8 @@ export async function functionalAnalysis(obj = {}) {
           },
           paragraph: {
             spacing: {
-              before: 120,
-              after: 120,
+              before: 175,
+              after: 20,
             },
           },
         },
@@ -2225,7 +2299,7 @@ export async function functionalAnalysis(obj = {}) {
           },
           paragraph: {
             spacing: {
-              before: 50,
+              before: 10,
               after: 0,
               line: 276,
             },

@@ -13,7 +13,6 @@ const COLORB = "FCE46B";
 //! A terminer
 export function generateOpenAirFunctionTable(arr) {
   const lineUp = arr[1].filter((e) => e[2]);
-  console.log("lineUp", lineUp);
   //const textTable = arr[0].Infos.TEXTS.NI;
   const tag = arr[0].tag;
   //const size = 8;
