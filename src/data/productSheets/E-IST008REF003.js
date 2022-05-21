@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Compteur électrique", //! Mandatory
+  INFO: "Le compteur électrique produit des impulsions en fonction de la quantité de courant qui le traverse.", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

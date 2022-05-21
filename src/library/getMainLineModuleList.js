@@ -1,15 +1,30 @@
-//* Main method !
-//! (MODICON TM3 PROFACE SCREEN ONLY)
-//? obj => complete IOList (arg => oil) like {NI:x,NO:y ...}
-export function drawModuleLineUp(oil) {
-  const mt3 = modiconTm3Obj(oil);
-  const mt3l0 = modiconTm3LineUp(mt3);
-  const mt3l1 = split(mt3l0);
-  const result = insert(mt3l1);
-  return result;
+//* Build module list according choosen technology
+//? IO => {NI:x,NO:y ...}
+//? moduleTechnologie => STRING
+export function getMainLineModuleList(IO, moduleTechnologie) {
+  //! (MODICON TM3 MODULE TECHNOLOGY ONLY)
+  if (moduleTechnologie === "TM3SE") {
+    const mt3 = modiconTm3Obj(IO);
+    const mt3l0 = modiconTm3LineUp(mt3);
+    const mt3l1 = split(mt3l0);
+    const result = insert(mt3l1);
+    return result;
+  }
+  //! (XXX MODULE TECHNOLOGY ONLY)
+  else if (moduleTechnologie === "XXX") {
+    const result = XXX(IO);
+    return result;
+  }
+  //
+  else {
+    console.log("ERROR getMainLineModuleList");
+    return false;
+  }
 }
+
+//! (MODICON TM3 MODULE TECHNOLOGY ONLY)
 // Method which calculate the Modicon TM3 module SetUp according IOList
-function modiconTm3Obj(obj) {
+function modiconTm3Obj(IO) {
   // Empty shape ATTENTION item order is important for drwing the line up
   let mt3 = {
     // Numerical
@@ -32,36 +47,36 @@ function modiconTm3Obj(obj) {
   let modNbs = 0; // Nbs of module
   let restOfModule = 0;
   // Fill Numeric Input 16 and 8 slots
-  const restOfTM3DI16G = obj.NI % mt3.TM3DI16G.cpty;
-  mt3.TM3DI16G.qtty += Math.floor(obj.NI / mt3.TM3DI16G.cpty);
+  const restOfTM3DI16G = IO.NI % mt3.TM3DI16G.cpty;
+  mt3.TM3DI16G.qtty += Math.floor(IO.NI / mt3.TM3DI16G.cpty);
   if (restOfTM3DI16G > mt3.TM3DI8G.cpty) {
     mt3.TM3DI16G.qtty += 1;
   } else if (restOfTM3DI16G <= mt3.TM3DI8G.cpty && restOfTM3DI16G !== 0) {
     mt3.TM3DI8G.qtty += 1;
   }
   // Fill Numeric Output 16 and 8 slots
-  const restOfTM3DQ16TG = obj.NO % mt3.TM3DQ16TG.cpty;
-  mt3.TM3DQ16TG.qtty += Math.floor(obj.NO / mt3.TM3DQ16TG.cpty);
+  const restOfTM3DQ16TG = IO.NO % mt3.TM3DQ16TG.cpty;
+  mt3.TM3DQ16TG.qtty += Math.floor(IO.NO / mt3.TM3DQ16TG.cpty);
   if (restOfTM3DQ16TG > mt3.TM3DQ8TG.cpty) {
     mt3.TM3DQ16TG.qtty += 1;
   } else if (restOfTM3DQ16TG <= mt3.TM3DQ8TG.cpty && restOfTM3DQ16TG !== 0) {
     mt3.TM3DQ8TG.qtty += 1;
   }
   // Fill Analog Input 8 slots
-  const restOfTM3AI8G = obj.AI % mt3.TM3AI8G.cpty;
-  mt3.TM3AI8G.qtty += Math.floor(obj.AI / mt3.TM3AI8G.cpty);
+  const restOfTM3AI8G = IO.AI % mt3.TM3AI8G.cpty;
+  mt3.TM3AI8G.qtty += Math.floor(IO.AI / mt3.TM3AI8G.cpty);
   if (restOfTM3AI8G !== 0) {
     mt3.TM3AI8G.qtty += 1;
   }
   // Fill Analog Output 4 slots
-  const restOfTM3AQ4G = obj.AO % mt3.TM3AQ4G.cpty;
-  mt3.TM3AQ4G.qtty += Math.floor(obj.AO / mt3.TM3AQ4G.cpty);
+  const restOfTM3AQ4G = IO.AO % mt3.TM3AQ4G.cpty;
+  mt3.TM3AQ4G.qtty += Math.floor(IO.AO / mt3.TM3AQ4G.cpty);
   if (restOfTM3AQ4G !== 0) {
     mt3.TM3AQ4G.qtty += 1;
   }
   // Fill Temperature Input 4 slots
-  const restOfTM3TI4G = obj.TI % mt3.TM3TI4G.cpty;
-  mt3.TM3TI4G.qtty += Math.floor(obj.TI / mt3.TM3TI4G.cpty);
+  const restOfTM3TI4G = IO.TI % mt3.TM3TI4G.cpty;
+  mt3.TM3TI4G.qtty += Math.floor(IO.TI / mt3.TM3TI4G.cpty);
   if (restOfTM3TI4G !== 0) {
     mt3.TM3TI4G.qtty += 1;
   }
@@ -135,4 +150,10 @@ function insert(mtx) {
     }
   }
   return l;
+}
+
+//! (XXX MODULE TECHNOLOGY ONLY)
+// Method which Build XXX
+function XXX(oil) {
+  return false;
 }

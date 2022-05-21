@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Capteur de température", //! Mandatory
+  INFO: "Un capteur de température est un système qui convertit une température en une valeur physique mesurable.", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

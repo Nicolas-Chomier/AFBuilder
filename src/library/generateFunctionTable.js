@@ -16,8 +16,17 @@ export function generateFunctionTable(
   moduleSetUp,
   elementList
 ) {
+  // Screen with no I/O return simple text
+  let hmiFunctionTable = new Paragraph({
+    text: "Cet IHM ne possède pas d'entrées et de sorties.",
+    style: "STD",
+  });
+  // Determine if choosen screen have native I/O
+  const native = hmiSetUp[0].reduce((a, b) => a + b[3], 0);
   const ReEngineeredContent = sortElementByType(projectSlots, elementList);
-  const hmiFunctionTable = buildFunctionTable(ReEngineeredContent, hmiSetUp);
+  if (native !== 0) {
+    hmiFunctionTable = buildFunctionTable(ReEngineeredContent, hmiSetUp);
+  }
   const moduleFunctionTable = buildFunctionTable(
     ReEngineeredContent,
     moduleSetUp
@@ -39,7 +48,6 @@ function sortElementByType(projectSlots, elementList) {
       }
     }
   }
-  //console.log("modele", modele);
   return modele;
 }
 //* Fill object named shape with tag and element text table

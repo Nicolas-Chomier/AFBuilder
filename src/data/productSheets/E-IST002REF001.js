@@ -1,23 +1,22 @@
+//+ Mandatory main patern !
 export const productSheet = {
-  NAME: "Transmetteur de pression",
-  INFO: "Un transmetteur de pression est un système qui convertit une pression mécanique en une valeur électrique.",
+  NAME: "Transmetteur de débit", //! Mandatory
+  INFO: "Les débitmètres magnétiques se composent d'un émetteur et d'un capteur qui fonctionnent ensemble pour mesurer le débit. Le capteur du débitmètre magnétique est placé en ligne et mesure une tension induite générée par le fluide lorsqu'il passe dans un tuyau", //! Mandatory
   PINS: {
-    PIT: "Transmetteur à indicateur de pression",
-    PT: "Transmetteur de pression",
-    PDT: "Transmetteur de pression différentielle",
+    FT: "Transmetteur de débit",
   },
   OPENAIR: false,
   PROTOCOLE: false,
-  FB: "FB001",
+  FB: "FB001", //* If true => "STRING" ex: "FB001"
   IO: { NI: 0, NO: 0, AI: 1, AO: 0, TI: 0 },
   TEXTS: {
     NI: [],
     NO: [],
-    AI: ["Transmetteur de pression 4-20mA"],
+    AI: ["Transmetteur de débit 4-20mA"],
     AO: [],
     TI: [],
   },
-  // Consigne: mettre "FB" si les commandes sont gérées par un bloc fonction.
+  //* Warning : if managed by Function Block, fill array with "FB" !
   CMD: {
     NI: [[]],
     NO: [[]],

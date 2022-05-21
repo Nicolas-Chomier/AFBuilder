@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Transmetteur de température avec signal de commutation", //! Mandatory
+  INFO: "Un transmetteur de température est un système qui convertit une température en une valeur électrique.Celui-ci peut fournir une information numérique en plus.", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Thermostat", //! Mandatory
+  INFO: "Lorsque la température mesurée est inférieure au point de consigne, le thermostat envoie un signal à l'automate", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

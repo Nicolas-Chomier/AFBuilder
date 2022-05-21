@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Détecteur de flux", //! Mandatory
+  INFO: "Dispositif qui fournit une information numérique lorsque le fluide auquel il est soumis est en mouvement", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

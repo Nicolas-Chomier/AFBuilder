@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Détecteur de niveau d'eau", //! Mandatory
+  INFO: "Un capteur de niveau est un dispositif électronique qui mesure la hauteur d'un matériau, généralement liquide, dans un réservoir.Il détecte de manière binaire, comme un interrupteur, si le niveau d'eau atteint ou non une certaine limite.", //! Mandatory
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

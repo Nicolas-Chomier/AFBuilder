@@ -1,7 +1,7 @@
 //+ Mandatory main patern !
 export const productSheet = {
-  NAME: "", //! Mandatory
-  INFO: "", //! Mandatory
+  NAME: "Hygrometre", //! Mandatory
+  INFO: "L'hygromètre est basé sur la mesure de la température du point de rosée, et est utilisé pour mesurer l'humidité de l'air, ou d'un autre mélange gazeux",
   PINS: {
     PIT: "",
     PT: "",
@@ -28,7 +28,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [[]],
-    //! Write here Function bloc faults or reccurent faults
     OVERALL: [[]],
   },
 };

@@ -10,11 +10,13 @@ import {
 //
 const CUSTOM = "505E6E";
 const SOFTCUSTOM = "92A9C3";
-const overAllPatern = ["Nom", "Type", "Impact"];
+const overAllPatern = ["Nom", "Niveau d'alarme", "Action"];
 // Generate element fault table
 export function generateOverAllFaultTable(obj) {
   const tag = obj.tag;
-  const data = obj.Infos.FAULTS.OVERALL;
+  const overAllData = obj.Infos.FAULTS.OVERALL;
+  const faltData = obj.Infos.FAULTS.ARRAY;
+  const data = [...overAllData, ...faltData].filter((e) => e.length !== 1);
   const table = new Table({
     width: {
       size: 100,

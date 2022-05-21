@@ -10,7 +10,7 @@ import {
 //
 const CUSTOM = "EB6272";
 const SOFTCUSTOM = "EBA8BD";
-const faultPatern = ["Nom", "Niveau d'alarme", "Condition d'activation"];
+const faultPatern = ["Nom", "Niveau d'alarme", "Action"];
 // Generate element fault table
 export function generateFaultTable(obj) {
   const tag = obj.tag;

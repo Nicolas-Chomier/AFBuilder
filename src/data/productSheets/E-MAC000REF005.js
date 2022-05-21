@@ -130,6 +130,6 @@ export const productSheet = {
         "Entrée PLC activée après 3 secondes",
       ],
     ],
-    OVERALL: [[]],
+    OVERALL: [],
   },
 };

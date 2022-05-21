@@ -14,15 +14,15 @@ import {
 import { Packer, Document } from "docx";
 import { saveAs } from "file-saver";
 import { Buffer } from "buffer";
-//
+// Home methods
 import { generateCmdTable } from "./generateCmdTable";
 import { generateFaultTable } from "./generateFaultTable";
 import { generateOverAllFaultTable } from "./generateOverAllFaultTable";
 import { calculIoList } from "./calculIoList";
-import { drawModuleLineUp } from "./drawModuleLineUp";
+import { getMainLineModuleList } from "./getMainLineModuleList";
 import { getCompressorModuleList } from "./getCompressorModuleList";
 import { generateFunctionTable } from "./generateFunctionTable";
-import { getLegendTable } from "./getLegendTable";
+import { getModuleLegendTable } from "./getModuleLegendTable";
 import { generateOpenAirFunctionTable } from "./generateOpenAirFunctionTable";
 import { buildPlcNativeIOListTable } from "./buildPlcNativeIOListTable";
 // Images
@@ -30,35 +30,37 @@ import { CCOULEUR } from "../data/images/CCOULEUR.js";
 import { IRV } from "../data/images/IRV.js";
 import { IWV } from "../data/images/IWV.js";
 import { ALARMES } from "../data/images/ALARMES.js";
-
 // Constante declaration
-const TITRE1 = "4B6FEA";
+const TITRE1 = "4774EC";
 const TITRE2 = "4BA9EA";
 const TITRE3 = "4BEAC3";
-const WHITE = "FFFFFF";
-const DARKGREY = "2F2F2F";
+//const WHITE = "FFFFFF";
+const DARKGREY = "F1F1F1";
 const GREY = "878787";
 const BLACK = "000000";
 const SOFTBLUE = "C5CAE9";
-//! en chantier !
+//+ Go!
 export async function functionalAnalysis(obj = {}) {
   // Basical variable declaration
   const core = [];
+  const moduleTechnologie = "TM3SE"; //obj.ProjectInfos.Techno
   const elementList = obj.ElementInfos;
   const reservedSlots = obj.ProjectInfos.reservedSlots;
-  const screenInfos = obj.ScreenInfos;
   // Image for choosen HMI
   const hmiImgObj = await import(`../data/images/${obj.ScreenInfos.PIC}.js`);
   const hmiImg = hmiImgObj[obj.ScreenInfos.PIC];
-  ////! en chantier !
-  const mainInputOutputList = calculIoList(obj); // {NI:xx,NO:yy, ...}
-  const moduleSetUp = drawModuleLineUp(mainInputOutputList);
-  const usedModulesLegendTable = getLegendTable(screenInfos);
-  // Open Air
-  const compressorModuleLineUpList = getCompressorModuleList(obj);
-  // PLC with native I/O
-  //! en chantier !
+  // Get PLC with native I/O set up
   const hmiSetUp = buildPlcNativeIOListTable(obj);
+  // Module set up
+  const IOlist = calculIoList(obj); // {NI:xx,NO:yy, ...}
+  const moduleSetUp = getMainLineModuleList(IOlist, moduleTechnologie);
+  // Legend table for choosen module
+  const usedModulesLegendTable = getModuleLegendTable(moduleTechnologie);
+  // Open Air
+  const compressorModuleLineUpList = getCompressorModuleList(
+    elementList,
+    moduleTechnologie
+  );
   // Get function table for IHM and Module (if exist)
   const result = generateFunctionTable(
     reservedSlots,
@@ -739,31 +741,32 @@ export async function functionalAnalysis(obj = {}) {
       style: "STD",
     }),
     new Paragraph({
-      text: "Protocole de communication",
+      text: "Autres protocoles de communications",
       heading: HeadingLevel.HEADING_2,
     }),
     new Paragraph({
-      text: "Dans cette installation, différent protocole de communication peuvent être utilisés:",
+      text: "NONE",
       style: "STD",
     })
   );
-  obj.ElementInfos.map((elem) => {
-    if (elem.Infos.PROTOCOLE) {
-      return core.push(
+  for (const value of Object.values(obj.ElementInfos)) {
+    const prot = value.Infos.PROTOCOLE;
+    if (prot) {
+      core.push(
         new Paragraph({
           children: [
             new TextRun({
               text: "L'élément ",
             }),
             new TextRun({
-              text: elem.tag,
+              text: value.tag,
               bold: true,
             }),
             new TextRun({
               text: " utilise le protocole: ",
             }),
             new TextRun({
-              text: elem.Infos.PROTOCOLE,
+              text: prot,
               bold: true,
             }),
           ],
@@ -773,14 +776,8 @@ export async function functionalAnalysis(obj = {}) {
           style: "STD",
         })
       );
-    } else {
-      const result = new Paragraph({
-        text: "Aucun autre protocole de communication est utilisé dans ce projet.",
-        style: "STD",
-      });
-      return result;
     }
-  });
+  }
   //+ Chapter 4: "Architecture réseaux"
   core.push(
     new Paragraph({
@@ -1053,10 +1050,6 @@ export async function functionalAnalysis(obj = {}) {
       ],
     }),
     new Paragraph({
-      text: "Configuration IHM",
-      heading: HeadingLevel.HEADING_2,
-    }),
-    new Paragraph({
       text: "Image de l'IHM choisi",
       heading: HeadingLevel.HEADING_3,
     }),
@@ -1070,6 +1063,10 @@ export async function functionalAnalysis(obj = {}) {
           },
         }),
       ],
+    }),
+    new Paragraph({
+      text: "Configuration IHM",
+      heading: HeadingLevel.HEADING_2,
     }),
     new Paragraph({
       text: "Connexion des éléments aux entrées et sorties natives de l'IHM",
@@ -1154,10 +1151,12 @@ export async function functionalAnalysis(obj = {}) {
       );
     }
   } else {
-    new Paragraph({
-      text: "Aucun module d'entrées et sorties utilisés dans cette installation.",
-      style: "STD",
-    });
+    core.push(
+      new Paragraph({
+        text: "Aucun module d'entrées et sorties utilisés dans cette installation.",
+        style: "STD",
+      })
+    );
   }
   //+ Chapter 8: "Code couleurs"
   core.push(
@@ -1911,7 +1910,7 @@ export async function functionalAnalysis(obj = {}) {
       pageBreakBefore: true,
     }),
     new Paragraph({
-      text: "==============================================================================================================================================================================",
+      text: "=======================================================================================================================================================================================",
       style: "STD",
     })
   );
@@ -2178,7 +2177,7 @@ export async function functionalAnalysis(obj = {}) {
             size: 20,
             bold: true,
             italics: false,
-            color: WHITE,
+            color: BLACK,
             font: "Calibri",
           },
           paragraph: {
