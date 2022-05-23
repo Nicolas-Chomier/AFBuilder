@@ -3,16 +3,14 @@ export const productSheet = {
   NAME: "Compteur d'énergie", //! Mandatory
   INFO: "Le compteur d'énergie produit des impulsions en fonction de la quantité d'énergie réglable qui le traverse.", //! Mandatory
   PINS: {
-    PIT: "",
-    PT: "",
-    PDT: "",
+    XXX: "XXX",
   },
   OPENAIR: false,
   PROTOCOLE: false,
   FB: false, //* If true => "STRING" ex: "FB001"
-  IO: { NI: 0, NO: 0, AI: 0, AO: 0, TI: 0 },
+  IO: { NI: 1, NO: 0, AI: 0, AO: 0, TI: 0 },
   TEXTS: {
-    NI: [],
+    NI: ["Impulsion du compteur d'énergie thermique"],
     NO: [],
     AI: [],
     AO: [],
@@ -20,14 +18,26 @@ export const productSheet = {
   },
   //* Warning : if managed by Function Block, fill array with "FB" !
   CMD: {
-    NI: [[]],
+    NI: [
+      [
+        "Impulsions du compteur d'eau",
+        "Impulsion par unité de volume définie dans le compteur d'énergie thermique",
+        "Incrémentation du compteur",
+      ],
+    ],
     NO: [[]],
     AI: [[]],
     AO: [[]],
     TI: [[]],
   },
   FAULTS: {
-    ARRAY: [[]],
-    OVERALL: [[]],
+    ARRAY: [
+      [
+        "Défaut de seuil",
+        "PMI",
+        "Lorsque la somme des impulsions atteint un nombre limite défini",
+      ],
+    ],
+    OVERALL: [],
   },
 };

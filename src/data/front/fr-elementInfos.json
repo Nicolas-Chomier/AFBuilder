@@ -1,0 +1,502 @@
+"Chill": {
+    "title": "Chilleur",
+    "A-infos": "Systèmes destinés à extraire l'excès de chaleur d'un fluide par échange thermique avec l'eau ou l'air",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CHILL = Refroidisseur"
+    ]
+},
+"Fg dry def": {
+    "title": "Sécheur frigorifique",
+    "A-infos": "Ce type de sécheur consiste à refroidir l'air comprimé à une température inférieure à son point de rosée au moyen d'un échangeur de chaleur relié à un groupe frigorifique classique, ce qui provoque la condensation de l'humidité qu'il contient",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Fg dry": {
+    "title": "Sécheur frigorifique",
+    "A-infos": "Ce type de sécheur consiste à refroidir l'air comprimé à une température inférieure à son point de rosée au moyen d'un échangeur de chaleur relié à un groupe frigorifique classique, ce qui provoque la condensation de l'humidité qu'il contient",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Fg dry hygro": {
+    "title": "Sécheur frigorifique avec hygromètre",
+    "A-infos": "Ce type de sécheur consiste à refroidir l'air comprimé à une température inférieure à son point de rosée au moyen d'un échangeur de chaleur relié à un groupe frigorifique classique, ce qui provoque la condensation de l'humidité qu'il contient",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Fg dry run def run": {
+    "title": "Sécheur frigorifique",
+    "A-infos": "Ce type de sécheur consiste à refroidir l'air comprimé à une température inférieure à son point de rosée au moyen d'un échangeur de chaleur relié à un groupe frigorifique classique, ce qui provoque la condensation de l'humidité qu'il contient",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Fg dry run def": {
+    "title": "Sécheur frigorifique",
+    "A-infos": "Ce type de sécheur consiste à refroidir l'air comprimé à une température inférieure à son point de rosée au moyen d'un échangeur de chaleur relié à un groupe frigorifique classique, ce qui provoque la condensation de l'humidité qu'il contient",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads dry def": {
+    "title": "Sécheur à adsorption",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry": {
+    "title": "Sécheur à adsorption",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry eco": {
+    "title": "Sécheur par adsorption avec mode éco",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry hygro": {
+    "title": "Sécheur à adsorption avec hygromètre",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry eco hygro": {
+    "title": "Sécheur à adsorption avec hygromètre et mode éco",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry eco hygro run def run": {
+    "title": "Sécheur à adsorption",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Ads Dry eco hygro run def": {
+    "title": "Sécheur à adsorption",
+    "A-infos": "L'adsorption est un processus physique qui permet aux molécules de se fixer à la surface d'un solide. Dans notre cas, il va déshumidifier l'air comprimé qui le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec ce tag sont traités de la même manière :",
+    "B-tags": [
+        "DRY = Sécheur"
+    ]
+},
+"Separator": {
+    "title": "Séparateurs de condensats cycloniques",
+    "A-infos": "Les séparateurs de condensat cycloniques utilisent la force centrifuge pour forcer le condensat à sortir de l'air comprimé. La rotation fait que le condensat s'agglutine sur les parois des séparateurs centrifuges.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"Resistor": {
+    "title": "Résistance",
+    "A-infos": "Élément qui produit de la chaleur lorsque le courant le traverse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"Rc": {
+    "title": "Réchauffeur",
+    "A-infos": "Elément qui produit de la chaleur lorsqu'il est traversé par un courant, peut être piloté par un signal analogique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"Dr": {
+    "title": "Drainage de condensat",
+    "A-infos": "Les condensats sont détectés par les capteurs capacitifs des purgeurs automatiques et envoyés vers le circuit de traitement",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DR = Vanne de vidange"
+    ]
+},
+"Dr f": {
+    "title": "Drainage de condensat et retour de défaut",
+    "A-infos": "Les condensats sont détectés par les capteurs capacitifs des purgeurs automatiques et envoyés vers le circuit de traitement",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DR = Vanne de vidange"
+    ]
+},
+"Dr p": {
+    "title": "Purgeur de condensats piloté",
+    "A-infos": "Les condensats sont détectés par les capteurs capacitifs des purgeurs automatiques et envoyés vers le circuit de traitement",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DR = Vanne de vidange"
+    ]
+},
+"Dr pf": {
+    "title": " Pilotage de la purge des condensats et retour de défaut",
+    "A-infos": "Les condensats sont détectés par les capteurs capacitifs des purgeurs automatiques et envoyés vers le circuit de traitement",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "DR = Vanne de vidange"
+    ]
+},
+"2w pms": {
+    "title": "Vannes pneumatiques monostables à 2 voies",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique, se remet en position par défaut et de sécurité en cas de manque d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w pmf": {
+    "title": "Vannes pneumatiques monostables à 2 voies avec retour de position",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique et envoyant un retour d'information en fonction de sa position, revient en position par défaut et de sécurité en cas de manque d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"2w pbs": {
+    "title": "Vannes pneumatiques bistables à 2 voies",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w pbfa": {
+    "title": "Vannes pneumatiques bistables à 2 voies avec retour de position analogique",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique et envoyant un retour en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w es": {
+    "title": "Vannes à 2 voies motorisées",
+    "A-infos": "Une vanne pilotée par un moteur électrique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w pta": {
+    "title": "Vanne d'échappement avec mesure de pression amont",
+    "A-infos": "Une vanne pilotée par un moteur électrique (signal 4-20mA) avec une mesure de pression en amont",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w ptal": {
+    "title": "Vannes de déverse avec mesure de pression amont & aval",
+    "A-infos": "Une vanne pilotée par un moteur électrique (signal 4-20mA) avec une mesure de pression en amont et aval",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w ef": {
+    "title": "Vannes motorisées à 2 voies avec retour de position",
+    "A-infos": "Une vanne pilotée par un moteur électrique et envoyant un retour d'information en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"2w ep": {
+    "title": "Vannes à 2 voies motorisées",
+    "A-infos": "Une vanne pilotée par un moteur électrique.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"2w epfa": {
+    "title": "Vannes motorisées à 2 voies avec retour de position analogique",
+    "A-infos": "Une vanne pilotée par un moteur électrique et envoyant un retour analogique précis en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"3w pms": {
+    "title": "Vannes pneumatiques monostables à 3 voies",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique.Revenir en position par défaut et de sécurité en cas de manque d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"3w pmf": {
+    "title": "Vannes pneumatiques monostables à 3 voies avec retour de position",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique, envoyant un retour d'information en fonction de sa position, se remettant en position par défaut et de sécurité en cas de manque d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"3w pbs": {
+    "title": "Vannes pneumatiques bistables à 3 voies",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"3w pbf": {
+    "title": "Vannes pneumatiques bistables à 3 voies avec retour de position",
+    "A-infos": "Une vanne pilotée par un distributeur pneumatique et envoyant un retour en fonction de sa position",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"3w es": {
+    "title": "Vannes 3 voies motorisées",
+    "A-infos": "Une vanne pilotée par un moteur électrique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"3w ef": {
+    "title": "Vannes motorisées à 3 voies avec retour de position",
+    "A-infos": "Une vanne pilotée par un moteur électrique et envoyant un retour d'information en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"3w ep": {
+    "title": "Vannes 3 voies motorisées",
+    "A-infos": "Une vanne pilotée par un moteur électrique.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"3w epfa": {
+    "title": "Vannes 3 voies motorisées avec retour de position analogique",
+    "A-infos": "Une vanne pilotée par un moteur électrique et envoyant un retour analogique précis en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"Ds": {
+    "title": "Registre",
+    "A-infos": "Un registre est un élément, une sorte de clapet, qui permet de réguler l'air en créant une perte de charge.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PD = Registre motorisé"
+    ]
+},
+"Dsf": {
+    "title": "Registre avec retour de position",
+    "A-infos": "Un registre est un élément, une sorte de volet, qui permet de réguler l'air en créant une perte de charge et en envoyant un retour d'information en fonction de sa position.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PD = Registre motorisé",
+        "YSC = Fin de course FERME",
+        "YSO = Fin de course OUVERT"
+    ]
+},
+"Dp": {
+    "title": "Registre pilotés",
+    "A-infos": "Un registre est un élément, une sorte de volet, qui permet de réguler l'air en créant une perte de charge, piloté par une commande analogique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PD = Registre motorisé"
+    ]
+},
+"Dpfa": {
+    "title": "Registre pilotés avec retour de position analogique",
+    "A-infos": "Un registre est un élément, une sorte de volet, qui permet de réguler l'air en créant une perte de charge et en envoyant un retour analogique de précision en fonction de sa position",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PD = Registre motorisé"
+    ]
+},
+"Valve TOR": {
+    "title": "Vannes solénoïdes",
+    "A-infos": "La vanne électromagnétique (VME) ou électrovanne permet d'interrompre ou non le passage d'un fluide, elle se comporte comme un interrupteur",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PV = Vanne pilotée"
+    ]
+},
+"ULTRAMAT": {
+    "title": "ULTRAMAT",
+    "A-infos": "WIP",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"VAR-18": {
+    "title": "VAR-18",
+    "A-infos": "WIP",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"O2 Analyzer": {
+    "title": "Analyseur d'oxygène",
+    "A-infos": "WIP",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "WIP"
+    ]
+},
+"OPA-F": {
+    "title": "Compresseur à débit fixe (OPEN AIR)",
+    "A-infos": "Compresseur piloté par notre système Open Air avec contrôle tout ou rien",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CPF = Compresseur à débit fixe"
+    ]
+},
+"OPA-V": {
+    "title": "Compresseur à vitesse variable (OPEN AIR)",
+    "A-infos": "Compresseur piloté par notre système Open Air avec contrôle analogique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CPV = Compresseur à Débit Variable"
+    ]
+},
+"OPA-CTF": {
+    "title": "Compresseur centrifuge (OPEN AIR)",
+    "A-infos": "Compresseur piloté par notre système Open Air avec contrôle analogique",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CTF = Compresseur centrifuge"
+    ]
+},
+"Booster": {
+    "title": "Surpresseur / Souffleur",
+    "A-infos": "Un souffleur d'air est un équipement conçu pour délivrer de l'air en surpression. Ces soufflantes permettent d'obtenir de l'air comprimé à basse pression",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "BL = Souffleur"
+    ]
+},
+"Fan": {
+    "title": "Ventilateur",
+    "A-infos": "Le ventilateur souffle de l'air à basse pression mais à grande vitesse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "FAN = Ventilateur"
+    ]
+},
+"Fan F": {
+    "title": "Ventilateur",
+    "A-infos": "Le ventilateur souffle de l'air à basse pression mais à grande vitesse",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "FAN = Ventilateur"
+    ]
+},
+"CP": {
+    "title": "Compresseur d'air standard",
+    "A-infos": "Le principe de fonctionnement d'un compresseur d'air est d'aspirer l'air extérieur avant de l'expulser sous forme d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CP = Compresseur"
+    ]
+},
+"CP opt": {
+    "title": "Compresseur d'air standard avec options",
+    "A-infos": "Le principe de fonctionnement d'un compresseur d'air est d'aspirer l'air extérieur avant de l'expulser sous forme d'air comprimé",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "CP = Compresseur"
+    ]
+},
+"Water pump": {
+    "title": "Pompe à eau",
+    "A-infos": "Le principe de base d'une pompe hydraulique est de faire circuler un fluide pour permettre son évacuation. Il s'agit de pomper un volume constant de liquide pour l'évacuer ou le distribuer",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PU = Pompes"
+    ]
+},
+"Vacuum pump": {
+    "title": "Pompe à vide",
+    "A-infos": "Une pompe à vide est un type de pompe permettant de faire le vide, c'est-à-dire d'extraire l'air ou tout autre gaz contenu dans une enceinte fermée, afin d'en diminuer la pression.",
+    "B-intro": "Tous les éléments dessinés sur le P&ID avec cette étiquette sont traités de la même manière :",
+    "B-tags": [
+        "PU = Pompes"
+    ]
+},
+"Special DI": {
+    "title": "Entrée digitale",
+    "A-infos": "Ajouter une entrée numérique au projet à partir de besoins externes",
+    "B-intro": "Pas de TAG attribué",
+    "B-tags": [
+        ""
+    ]
+},
+"Special DO": {
+    "title": "Sortie digitale",
+    "A-infos": "Ajouter une sortie numérique au projet à partir de besoins externes",
+    "B-intro": "Pas de TAG attribué",
+    "B-tags": [
+        ""
+    ]
+},
+"Special AI": {
+    "title": "Entrée analogique",
+    "A-infos": "Ajouter une entrée analogique au projet à partir de besoins externes",
+    "B-intro": "Pas de TAG attribué",
+    "B-tags": [
+        ""
+    ]
+},
+"Special AIt": {
+    "title": "Entrée analogique temperature",
+    "A-infos": "Ajouter une entrée analogique pour sonde de temperature au projet à partir de besoins externes",
+    "B-intro": "Pas de TAG attribué",
+    "B-tags": [
+        ""
+    ]
+},
+"Special AO": {
+    "title": "Sortie analogique",
+    "A-infos": "Ajouter une sortie analogique au projet à partir de besoins externes",
+    "B-intro": "Pas de TAG attribué",
+    "B-tags": [
+        ""
+    ]
+}
+}
+}

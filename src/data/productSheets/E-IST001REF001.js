@@ -32,6 +32,6 @@ export const productSheet = {
   },
   FAULTS: {
     ARRAY: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
-    OVERALL: [[]],
+    OVERALL: [],
   },
 };

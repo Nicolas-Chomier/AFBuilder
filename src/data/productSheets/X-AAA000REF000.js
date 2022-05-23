@@ -3,9 +3,7 @@ export const productSheet = {
   NAME: "", //! Mandatory
   INFO: "", //! Mandatory
   PINS: {
-    PIT: "",
-    PT: "",
-    PDT: "",
+    XXX: "XXX",
   },
   OPENAIR: false,
   PROTOCOLE: false,

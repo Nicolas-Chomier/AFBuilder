@@ -3,18 +3,16 @@ export const productSheet = {
   NAME: "Transmetteur hybride (débit + T°)", //! Mandatory
   INFO: "Transmetteur qui mesure le débit et la température", //! Mandatory
   PINS: {
-    PIT: "",
-    PT: "",
-    PDT: "",
+    XXX: "XXX",
   },
   OPENAIR: false,
   PROTOCOLE: false,
-  FB: false, //* If true => "STRING" ex: "FB001"
-  IO: { NI: 0, NO: 0, AI: 0, AO: 0, TI: 0 },
+  FB: "FB001", //* If true => "STRING" ex: "FB001"
+  IO: { NI: 1, NO: 0, AI: 1, AO: 0, TI: 0 },
   TEXTS: {
-    NI: [],
+    NI: ["Envoi d'un signal numérique"],
     NO: [],
-    AI: [],
+    AI: ["Transmetteur de pression 4-20mA"],
     AO: [],
     TI: [],
   },
@@ -22,12 +20,18 @@ export const productSheet = {
   CMD: {
     NI: [[]],
     NO: [[]],
-    AI: [[]],
+    AI: [["FB"]],
     AO: [[]],
     TI: [[]],
   },
   FAULTS: {
-    ARRAY: [[]],
-    OVERALL: [[]],
+    ARRAY: [["def_[TAG]", "PMI", "Entrée PLC activée après 3 secondes"]],
+    OVERALL: [
+      ["def_signal_[TAG]", "TMI", "Affichage d'un avertissement"],
+      ["def_SL_[TAG]", "PMI", "Affichage d'un avertissement"],
+      ["def_SLL_[TAG]", "PMA", "Retour à l'etat par défaut"],
+      ["def_SH_[TAG]", "PMI", "Affichage d'un avertissement"],
+      ["def_SHH_[TAG]", "PMA", "Retour à l'etat par défaut"],
+    ],
   },
 };
